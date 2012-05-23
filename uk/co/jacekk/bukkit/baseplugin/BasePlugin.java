@@ -3,8 +3,11 @@ package uk.co.jacekk.bukkit.baseplugin;
 import java.io.File;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Server;
 import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import uk.co.jacekk.bukkit.baseplugin.util.PluginLogger;
 
@@ -14,6 +17,10 @@ public abstract class BasePlugin extends JavaPlugin {
 	
 	protected PluginLogger log;
 	
+	protected Server server;
+	protected PluginManager pluginManager;
+	protected BukkitScheduler scheduler;
+	
 	protected File baseDir;
 	protected String baseDirPath;
 	
@@ -21,6 +28,10 @@ public abstract class BasePlugin extends JavaPlugin {
 		this.description = this.getDescription();
 		
 		this.log = new PluginLogger(this);
+		
+		this.server = this.getServer();
+		this.pluginManager = this.server.getPluginManager();
+		this.scheduler = this.server.getScheduler();
 		
 		this.baseDir = this.getDataFolder();
 		this.baseDirPath = this.baseDir.getAbsolutePath();
