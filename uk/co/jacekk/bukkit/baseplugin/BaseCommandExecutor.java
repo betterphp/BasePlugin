@@ -2,11 +2,11 @@ package uk.co.jacekk.bukkit.baseplugin;
 
 import org.bukkit.command.CommandExecutor;
 
-public abstract class BaseCommandExecutor implements CommandExecutor {
+public abstract class BaseCommandExecutor<Type> implements CommandExecutor {
 	
-	protected BasePlugin plugin;
+	protected Type plugin;
 	
-	public BaseCommandExecutor(BasePlugin plugin){
+	public BaseCommandExecutor(Type plugin){
 		this.plugin = plugin;
 	}
 	

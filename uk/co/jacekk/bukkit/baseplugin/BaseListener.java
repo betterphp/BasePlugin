@@ -2,11 +2,11 @@ package uk.co.jacekk.bukkit.baseplugin;
 
 import org.bukkit.event.Listener;
 
-public abstract class BaseListener implements Listener {
+public abstract class BaseListener<Type> implements Listener {
 	
-	protected BasePlugin plugin;
+	protected Type plugin;
 	
-	public BaseListener(BasePlugin plugin){
+	public BaseListener(Type plugin){
 		this.plugin = plugin;
 	}
 	
