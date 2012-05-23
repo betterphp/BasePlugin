@@ -2,16 +2,16 @@ package uk.co.jacekk.bukkit.baseplugin.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedHashMap;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class PluginConfig {
 	
 	private YamlConfiguration config;
-	private LinkedHashMap<String, Object> configDefaults;
+	private PluginConfigKey[] configDefaults;
 	
-	public PluginConfig(File configFile, LinkedHashMap<String, Object> configDefaults, PluginLogger log){
+	public PluginConfig(File configFile, PluginConfigKey[] configDefaults, PluginLogger log){
 		this.config = new YamlConfiguration();
 		this.configDefaults = configDefaults;
 		
@@ -25,9 +25,11 @@ public class PluginConfig {
 		
 		boolean updateNeeded = false;
 		
-		for (String key : this.configDefaults.keySet()){
+		for (PluginConfigKey entry : this.configDefaults){
+			String key = entry.getKey();
+			
 			if (this.config.contains(key) == false){
-				this.config.set(key, this.configDefaults.get(key));
+				this.config.set(key, entry.getDefault());
 				
 				updateNeeded = true;
 			}
@@ -44,39 +46,39 @@ public class PluginConfig {
 	}
 	
 	public boolean containsKey(PluginConfigKey configKey){
-		return this.configDefaults.containsKey(configKey.getKey());
+		return ArrayUtils.contains(this.configDefaults, configKey);
 	}
 	
 	public int getInt(PluginConfigKey configKey){
-		if (this.configDefaults.containsKey(configKey.getKey()) == false){
+		if (!this.containsKey(configKey)){
 			return 0;
 		}
 		
-		return this.config.getInt(configKey.getKey(), (Integer) this.configDefaults.get(configKey.getKey()));
+		return this.config.getInt(configKey.getKey(), (Integer) configKey.getDefault());
 	}
 	
 	public long getLong(PluginConfigKey configKey){
-		if (this.configDefaults.containsKey(configKey.getKey()) == false){
+		if (!this.containsKey(configKey)){
 			return 0L;
 		}
 		
-		return this.config.getLong(configKey.getKey(), new Long((Integer) this.configDefaults.get(configKey.getKey())));
+		return this.config.getLong(configKey.getKey(), (Long) configKey.getDefault());
 	}
 	
 	public boolean getBoolean(PluginConfigKey configKey){
-		if (this.configDefaults.containsKey(configKey.getKey()) == false){
+		if (!this.containsKey(configKey)){
 			return false;
 		}
 		
-		return this.config.getBoolean(configKey.getKey(), (Boolean) this.configDefaults.get(configKey.getKey()));
+		return this.config.getBoolean(configKey.getKey(), (Boolean) configKey.getDefault());
 	}
 	
 	public String getString(PluginConfigKey configKey){
-		if (this.configDefaults.containsKey(configKey.getKey()) == false){
+		if (!this.containsKey(configKey)){
 			return "";
 		}
 		
-		return this.config.getString(configKey.getKey(), (String) this.configDefaults.get(configKey.getKey()));
+		return this.config.getString(configKey.getKey(), (String) configKey.getDefault());
 	}
 	
 }
