@@ -1,5 +1,7 @@
 package uk.co.jacekk.bukkit.baseplugin;
 
+import java.io.File;
+
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,10 +14,20 @@ public abstract class BasePlugin extends JavaPlugin {
 	
 	protected PluginLogger log;
 	
-	public void onEnable(){
+	protected File baseDir;
+	protected String baseDirPath;
+	
+	public void onEnable(boolean createFolder){
 		this.description = this.getDescription();
 		
 		this.log = new PluginLogger(this);
+		
+		this.baseDir = this.getDataFolder();
+		this.baseDirPath = this.baseDir.getAbsolutePath();
+		
+		if (createFolder && !this.baseDir.exists()){
+			this.baseDir.mkdirs();
+		}
 	}
 	
 	public String formatMessage(String message, boolean colour, boolean version){
