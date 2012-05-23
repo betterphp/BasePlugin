@@ -2,6 +2,8 @@ package uk.co.jacekk.bukkit.baseplugin.config;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -59,12 +61,38 @@ public class PluginConfig {
 		return this.config.getInt(configKey.getKey(), (Integer) configKey.getDefault());
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Integer> getIntList(PluginConfigKey configKey){
+		if (!this.containsKey(configKey)){
+			return new ArrayList<Integer>();
+		}
+		
+		if (!this.config.contains(configKey.getKey())){
+			return (List<Integer>) configKey.getDefault();
+		}
+		
+		return this.config.getIntegerList(configKey.getKey());
+	}
+	
 	public long getLong(PluginConfigKey configKey){
 		if (!this.containsKey(configKey)){
 			return 0L;
 		}
 		
 		return this.config.getLong(configKey.getKey(), (Long) configKey.getDefault());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Long> getLongList(PluginConfigKey configKey){
+		if (!this.containsKey(configKey)){
+			return new ArrayList<Long>();
+		}
+		
+		if (!this.config.contains(configKey.getKey())){
+			return (List<Long>) configKey.getDefault();
+		}
+		
+		return this.config.getLongList(configKey.getKey());
 	}
 	
 	public boolean getBoolean(PluginConfigKey configKey){
@@ -81,6 +109,19 @@ public class PluginConfig {
 		}
 		
 		return this.config.getString(configKey.getKey(), (String) configKey.getDefault());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getStringList(PluginConfigKey configKey){
+		if (!this.containsKey(configKey)){
+			return new ArrayList<String>();
+		}
+		
+		if (!this.config.contains(configKey.getKey())){
+			return (List<String>) configKey.getDefault();
+		}
+		
+		return this.config.getStringList(configKey.getKey());
 	}
 	
 }
