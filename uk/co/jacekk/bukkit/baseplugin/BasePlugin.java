@@ -14,15 +14,15 @@ import uk.co.jacekk.bukkit.baseplugin.util.PluginLogger;
 
 public abstract class BasePlugin extends JavaPlugin {
 	
-	protected PluginDescriptionFile description;
+	public PluginDescriptionFile description;
 	
-	protected PluginLogger log;
+	public PluginLogger log;
 	
-	protected PluginConfig config;
+	public PluginConfig config;
 	
-	protected Server server;
-	protected PluginManager pluginManager;
-	protected BukkitScheduler scheduler;
+	public Server server;
+	public PluginManager pluginManager;
+	public BukkitScheduler scheduler;
 	
 	protected File baseDir;
 	protected String baseDirPath;
