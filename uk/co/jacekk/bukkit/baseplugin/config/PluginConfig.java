@@ -1,10 +1,12 @@
-package uk.co.jacekk.bukkit.baseplugin.util;
+package uk.co.jacekk.bukkit.baseplugin.config;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import uk.co.jacekk.bukkit.baseplugin.util.PluginLogger;
 
 public class PluginConfig {
 	
