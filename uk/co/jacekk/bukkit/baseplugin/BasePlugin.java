@@ -14,12 +14,11 @@ import uk.co.jacekk.bukkit.baseplugin.util.PluginLogger;
 
 public abstract class BasePlugin extends JavaPlugin {
 	
-	public final PluginDescriptionFile description = this.getDescription();
+	public PluginDescriptionFile description;
+	public PluginLogger log;
 	
-	public final PluginLogger log = new PluginLogger(this);
-	
-	public File baseDir;
-	public String baseDirPath;
+	protected File baseDir;
+	protected String baseDirPath;
 	
 	public Server server;
 	public PluginManager pluginManager;
@@ -28,6 +27,9 @@ public abstract class BasePlugin extends JavaPlugin {
 	public PluginConfig config;
 	
 	public void onEnable(boolean createFolder){
+		this.description = this.getDescription();
+		this.log = new PluginLogger(this);
+		
 		this.baseDir = this.getDataFolder();
 		this.baseDirPath = this.baseDir.getAbsolutePath();
 		
