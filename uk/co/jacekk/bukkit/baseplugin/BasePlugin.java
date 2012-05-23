@@ -14,30 +14,26 @@ import uk.co.jacekk.bukkit.baseplugin.util.PluginLogger;
 
 public abstract class BasePlugin extends JavaPlugin {
 	
-	public PluginDescriptionFile description;
+	public final PluginDescriptionFile description = this.getDescription();
 	
-	public PluginLogger log;
+	public final PluginLogger log = new PluginLogger(this);
 	
-	public PluginConfig config;
+	public File baseDir;
+	public String baseDirPath;
 	
 	public Server server;
 	public PluginManager pluginManager;
 	public BukkitScheduler scheduler;
 	
-	protected File baseDir;
-	protected String baseDirPath;
+	public PluginConfig config;
 	
 	public void onEnable(boolean createFolder){
-		this.description = this.getDescription();
-		
-		this.log = new PluginLogger(this);
+		this.baseDir = this.getDataFolder();
+		this.baseDirPath = this.baseDir.getAbsolutePath();
 		
 		this.server = this.getServer();
 		this.pluginManager = this.server.getPluginManager();
 		this.scheduler = this.server.getScheduler();
-		
-		this.baseDir = this.getDataFolder();
-		this.baseDirPath = this.baseDir.getAbsolutePath();
 		
 		if (createFolder && !this.baseDir.exists()){
 			this.baseDir.mkdirs();
