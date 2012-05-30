@@ -79,7 +79,7 @@ public class DataStore {
 		return this.data.containsKey((this.caseSensitive) ? key : key.toLowerCase());
 	}
 	
-	public Set<Entry<String, String>> getAkk(){
+	public Set<Entry<String, String>> getAll(){
 		return this.data.entrySet();
 	}
 	
