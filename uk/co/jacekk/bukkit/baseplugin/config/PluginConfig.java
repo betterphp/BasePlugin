@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import uk.co.jacekk.bukkit.baseplugin.util.PluginLogger;
+import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
 
 public class PluginConfig {
 	

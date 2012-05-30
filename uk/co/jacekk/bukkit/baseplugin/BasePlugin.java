@@ -10,7 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
-import uk.co.jacekk.bukkit.baseplugin.util.PluginLogger;
+import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
 
 public abstract class BasePlugin extends JavaPlugin {
 	

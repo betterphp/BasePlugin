@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.util;
+package uk.co.jacekk.bukkit.baseplugin.logging;
 
 import java.util.logging.Logger;
 
