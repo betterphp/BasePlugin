@@ -75,12 +75,32 @@ public class DataStore {
 		}
 	}
 	
-	public int size(){
-		return this.data.size();
-	}
-	
 	public boolean contains(String key){
 		return this.data.containsKey((this.caseSensitive) ? key : key.toLowerCase());
+	}
+	
+	public Set<Entry<String, String>> getAkk(){
+		return this.data.entrySet();
+	}
+	
+	public Set<String> getKeys(){
+		return this.data.keySet();
+	}
+	
+	public String getData(String key){
+		if (!this.caseSensitive){
+			key = key.toLowerCase();
+		}
+		
+		if (this.data.containsKey(key) == false){
+			return "";
+		}
+		
+		return this.data.get(key);
+	}
+	
+	public int size(){
+		return this.data.size();
 	}
 	
 	public void add(String key, String value){
@@ -99,22 +119,6 @@ public class DataStore {
 	
 	public void removeAll(){
 		this.data.clear();
-	}
-	
-	public Set<String> getkeys(){
-		return this.data.keySet();
-	}
-	
-	public String getData(String key){
-		if (!this.caseSensitive){
-			key = key.toLowerCase();
-		}
-		
-		if (this.data.containsKey(key) == false){
-			return "";
-		}
-		
-		return this.data.get(key);
 	}
 	
 }

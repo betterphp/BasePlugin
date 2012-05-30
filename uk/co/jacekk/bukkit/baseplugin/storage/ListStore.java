@@ -71,6 +71,10 @@ public class ListStore {
 		}
 	}
 	
+	public boolean contains(String entry){
+		return this.data.contains((this.caseSensitive) ? entry : entry.toLowerCase());
+	}
+	
 	public List<String> getAll(){
 		return this.data;
 	}
@@ -110,10 +114,6 @@ public class ListStore {
 	public void removeAll(){
 		this.data.clear();
 		this.save();
-	}
-	
-	public boolean contains(String entry){
-		return this.data.contains((this.caseSensitive) ? entry : entry.toLowerCase());
 	}
 	
 }
