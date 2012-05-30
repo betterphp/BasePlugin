@@ -75,6 +75,10 @@ public class DataStore {
 		}
 	}
 	
+	public int size(){
+		return this.data.size();
+	}
+	
 	public boolean contains(String key){
 		return this.data.containsKey((this.caseSensitive) ? key : key.toLowerCase());
 	}
@@ -91,6 +95,10 @@ public class DataStore {
 	
 	public void remove(String key){
 		this.data.remove((this.caseSensitive) ? key : key.toLowerCase());
+	}
+	
+	public void removeAll(){
+		this.data.clear();
 	}
 	
 	public Set<String> getkeys(){
