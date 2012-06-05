@@ -84,7 +84,7 @@ public class ListStore {
 	}
 	
 	public void add(String entry){
-		if (this.caseSensitive){
+		if (!this.caseSensitive){
 			entry = entry.toLowerCase();
 		}
 		
