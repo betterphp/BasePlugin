@@ -74,6 +74,27 @@ public class PluginConfig {
 		return this.config.getIntegerList(configKey.getKey());
 	}
 	
+	public double getDouble(PluginConfigKey configKey){
+		if (!this.containsKey(configKey)){
+			return 0.0D;
+		}
+		
+		return this.config.getDouble(configKey.getKey(), (Double) configKey.getDefault());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Double> getDoubleList(PluginConfigKey configKey){
+		if (!this.containsKey(configKey)){
+			return new ArrayList<Double>();
+		}
+		
+		if (!this.config.contains(configKey.getKey())){
+			return (List<Double>) configKey.getDefault();
+		}
+		
+		return this.config.getDoubleList(configKey.getKey());
+	}
+	
 	public long getLong(PluginConfigKey configKey){
 		if (!this.containsKey(configKey)){
 			return 0L;
