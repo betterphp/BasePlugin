@@ -75,4 +75,8 @@ public class ListUtils {
 		return builder.toString();
 	}
 	
+	public static Object getRandom(List<?> items){
+		return items.get((int) Math.random() * items.size());
+	}
+	
 }
