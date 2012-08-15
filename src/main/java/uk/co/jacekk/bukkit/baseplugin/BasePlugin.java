@@ -20,6 +20,11 @@ import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
 public abstract class BasePlugin extends JavaPlugin {
 	
 	/**
+	 * The version of the BasePlugin library
+	 */
+	public static final String version = "0.2";
+	
+	/**
 	 * The {@link PluginDescriptionFile} for this plugin.
 	 */
 	public PluginDescriptionFile description;
