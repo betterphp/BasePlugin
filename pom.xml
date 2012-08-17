@@ -3,7 +3,7 @@
 	<groupId>uk.co.jacekk.bukkit</groupId>
 	<artifactId>baseplugin</artifactId>
 	<version>0.2-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 	
 	<name>BasePlugin</name>
 	
