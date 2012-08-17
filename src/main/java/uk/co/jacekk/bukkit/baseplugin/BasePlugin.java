@@ -17,7 +17,7 @@ import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
  * 
  * @author Jacek Kuzemczak 
  */
-public abstract class BasePlugin extends JavaPlugin {
+abstract class BasePlugin extends JavaPlugin {
 	
 	/**
 	 * The version of the BasePlugin library
