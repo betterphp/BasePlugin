@@ -17,7 +17,7 @@ public abstract class UpdateChecker {
 	
 	private HashMap<String, Integer> stringValues;
 	
-	public UpdateChecker(Plugin plugin, String url){
+	protected UpdateChecker(Plugin plugin, String url){
 		this.plugin = plugin;
 		
 		try{
