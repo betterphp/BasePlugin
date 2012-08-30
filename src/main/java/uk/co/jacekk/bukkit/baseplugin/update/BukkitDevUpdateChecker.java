@@ -12,6 +12,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import uk.co.jacekk.bukkit.baseplugin.util.StringUtils;
+
 public class BukkitDevUpdateChecker extends UpdateChecker {
 	
 	public BukkitDevUpdateChecker(Plugin plugin, String url){
@@ -47,7 +49,7 @@ public class BukkitDevUpdateChecker extends UpdateChecker {
 			reader.close();
 			input.close();
 			
-			if (this.versionCompare(plugin.getDescription().getVersion(), this.version) == -1){
+			if (StringUtils.versionCompare(plugin.getDescription().getVersion(), this.version) == -1){
 				return true;
 			}
 		}catch (Exception e){
