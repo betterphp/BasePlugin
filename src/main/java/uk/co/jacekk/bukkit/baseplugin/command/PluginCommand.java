@@ -23,7 +23,7 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 	private Method handlerMethod;
 	
 	public PluginCommand(BasePlugin plugin, BaseCommandExecutor<? extends BasePlugin> handler, Method handlerMethod, String[] names, String description, String usage){
-		super(names[0], description, usage, Arrays.asList(names));
+		super(names[0], description, "/<command> " + usage, Arrays.asList(names));
 		
 		this.plugin = plugin;
 		this.handler = handler;

@@ -27,6 +27,6 @@ public @interface CommandHandler {
 	/**
 	 * @return	The usage information for this command.
 	 */
-	String usage();
+	String usage() default "";
 	
 }
