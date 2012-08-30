@@ -1,6 +1,8 @@
-package uk.co.jacekk.bukkit.baseplugin;
+package uk.co.jacekk.bukkit.baseplugin.event;
 
 import org.bukkit.event.Listener;
+
+import uk.co.jacekk.bukkit.baseplugin.BaseObject;
 
 /**
  * The base class that all listeners should extend.
@@ -9,18 +11,13 @@ import org.bukkit.event.Listener;
  *
  * @param <Type>	The plugin that this listener belongs to.
  */
-public abstract class BaseListener<Type> implements Listener {
-	
-	/**
-	 * The plugin that created this listener.
-	 */
-	protected Type plugin;
+public abstract class BaseListener<Type> extends BaseObject<Type> implements Listener {
 	
 	/**
 	 * @param plugin	The plugin that this listener belongs to.
 	 */
 	public BaseListener(Type plugin){
-		this.plugin = plugin;
+		super(plugin);
 	}
 	
 }

@@ -2,7 +2,6 @@ package uk.co.jacekk.bukkit.baseplugin.update;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 
 import org.bukkit.plugin.Plugin;
 
