@@ -16,7 +16,7 @@ import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
 /**
  * The base class that the main plugin class should extend.
  * 
- * @author Jacek Kuzemczak 
+ * @author Jacek Kuzemczak
  */
 public abstract class BasePlugin extends JavaPlugin {
 	
