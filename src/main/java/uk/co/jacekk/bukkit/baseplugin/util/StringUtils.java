@@ -2,6 +2,11 @@ package uk.co.jacekk.bukkit.baseplugin.util;
 
 import java.util.HashMap;
 
+/**
+ * A collection of useful methods for working with strings.
+ * 
+ * @author Jacek Kuzemczak
+ */
 public class StringUtils {
 	
 	private static final HashMap<String, Integer> stringValues = new HashMap<String, Integer>();
@@ -27,6 +32,13 @@ public class StringUtils {
 		}
 	}
 	
+	/**
+	 * Compares two version numbers.
+	 * 
+	 * @param a	The first version number.
+	 * @param b	The second version number.
+	 * @return	-1 if a is less than b, 1 if a is greater than b and 0 if a and b are equal.
+	 */
 	public static int versionCompare(String a, String b){
 		a = a.trim().toLowerCase();
 		b = b.trim().toLowerCase();

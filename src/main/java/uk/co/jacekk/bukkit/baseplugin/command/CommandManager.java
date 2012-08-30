@@ -10,10 +10,18 @@ import org.bukkit.plugin.SimplePluginManager;
 
 import uk.co.jacekk.bukkit.baseplugin.BasePlugin;
 
+/**
+ * Used to manage the commands for this plugin.
+ * 
+ * @author Jacek Kuzemczak
+ */
 public class CommandManager {
 	
 	private BasePlugin plugin;
 	
+	/**
+	 * @param plugin	The plugin that this manager is for.
+	 */
 	public CommandManager(BasePlugin plugin){
 		this.plugin = plugin;
 	}
@@ -41,6 +49,11 @@ public class CommandManager {
 		return commandMap.register(plugin.description.getName(), command);
 	}
 	
+	/**
+	 * Registers a new command executor.
+	 * 
+	 * @param executor	The command executor to register.
+	 */
 	public void registerCommandExecutor(BaseCommandExecutor<? extends BasePlugin> executor){
 		@SuppressWarnings("unchecked")
 		Class<BaseCommandExecutor<? extends BasePlugin>> cls = (Class<BaseCommandExecutor<? extends BasePlugin>>) executor.getClass();

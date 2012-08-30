@@ -10,6 +10,12 @@ import org.bukkit.plugin.Plugin;
 
 import uk.co.jacekk.bukkit.baseplugin.BasePlugin;
 
+/**
+ * used internally to call the method that should handle a command, this would
+ * normally call the onCommand() method.
+ * 
+ * @author Jacek Kuzemczak
+ */
 public class PluginCommand extends Command implements PluginIdentifiableCommand {
 	
 	private BasePlugin plugin;

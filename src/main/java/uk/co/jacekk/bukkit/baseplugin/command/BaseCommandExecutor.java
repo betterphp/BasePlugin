@@ -3,7 +3,8 @@ package uk.co.jacekk.bukkit.baseplugin.command;
 import uk.co.jacekk.bukkit.baseplugin.BaseObject;
 
 /**
- * The base class that all command executors should extend. 
+ * The base class that all command executors should extend. Commands are registered
+ * using {@link CommandManager} and defined using the {@link CommandHandler} annotations.
  * 
  * @author Jacek Kuzemczak
  *

@@ -14,12 +14,28 @@ import org.w3c.dom.NodeList;
 
 import uk.co.jacekk.bukkit.baseplugin.util.StringUtils;
 
+/**
+ * A BukkitDev specific implementation of {@link UpdateChecker}.
+ * 
+ * @author Jacek Kuzemczak
+ */
 public class BukkitDevUpdateChecker extends UpdateChecker {
 	
+	/**
+	 * Creates a new update checker for this plugin.
+	 * 
+	 * @param plugin	The plugin to check for updates for.
+	 * @param url		The URL of the BukkitDev files RSS feed.
+	 */
 	public BukkitDevUpdateChecker(Plugin plugin, String url){
 		super(plugin, url);
 	}
 	
+	/**
+	 * Performs the update check. The methods getVersion() and similar will return
+	 * null if this method has not been called yet.
+	 */
+	@Override
 	public boolean updateNeeded(){
 		try{
 			InputStream input = this.filesFeed.openConnection().getInputStream();
