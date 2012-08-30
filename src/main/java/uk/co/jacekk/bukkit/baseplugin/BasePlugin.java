@@ -9,6 +9,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
+import uk.co.jacekk.bukkit.baseplugin.command.CommandManager;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
 import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
 
@@ -46,6 +47,7 @@ public abstract class BasePlugin extends JavaPlugin {
 	
 	public Server server;
 	public PluginManager pluginManager;
+	public CommandManager commandManager;
 	public BukkitScheduler scheduler;
 	
 	/**
@@ -67,6 +69,7 @@ public abstract class BasePlugin extends JavaPlugin {
 		
 		this.server = this.getServer();
 		this.pluginManager = this.server.getPluginManager();
+		this.commandManager = new CommandManager(this);
 		this.scheduler = this.server.getScheduler();
 		
 		if (createFolder && !this.baseDir.exists()){
