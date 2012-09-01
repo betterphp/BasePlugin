@@ -27,11 +27,12 @@ public class KeyValueArgumentProcessor extends ArgumentProcessor {
 	 * @param seperator		The string used to separate the keys and values.
 	 */
 	public KeyValueArgumentProcessor(String[] args, String separator){
-		super(args);
-		
+		this.args = args;
 		this.separator = separator;
 		this.values = new LinkedHashMap<String, String>();
 		this.leftover = new LinkedList<String>();
+		
+		this.process();
 	}
 	
 	public void process(){

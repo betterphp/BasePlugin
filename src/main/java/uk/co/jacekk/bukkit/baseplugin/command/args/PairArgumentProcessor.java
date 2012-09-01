@@ -24,9 +24,10 @@ public class PairArgumentProcessor extends ArgumentProcessor {
 	 * @param args	The command arguments.
 	 */
 	public PairArgumentProcessor(String[] args){
-		super(args);
-		
+		this.args = args;
 		this.values = new LinkedHashMap<String, String>();
+		
+		this.process();
 	}
 	
 	public void process(){
