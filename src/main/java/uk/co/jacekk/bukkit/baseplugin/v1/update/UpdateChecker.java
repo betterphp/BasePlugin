@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.update;
+package uk.co.jacekk.bukkit.baseplugin.v1.update;
 
 import java.net.MalformedURLException;
 import java.net.URL;

@@ -1,6 +1,6 @@
-package uk.co.jacekk.bukkit.baseplugin.command;
+package uk.co.jacekk.bukkit.baseplugin.v1.command;
 
-import uk.co.jacekk.bukkit.baseplugin.BaseObject;
+import uk.co.jacekk.bukkit.baseplugin.v1.BaseObject;
 
 /**
  * The base class that all command executors should extend. Commands are registered

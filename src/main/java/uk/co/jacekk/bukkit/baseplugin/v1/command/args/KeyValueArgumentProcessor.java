@@ -1,44 +1,49 @@
-package uk.co.jacekk.bukkit.baseplugin.command.args;
+package uk.co.jacekk.bukkit.baseplugin.v1.command.args;
 
 import java.util.LinkedHashMap;
-import java.util.Set;
+import java.util.LinkedList;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * Processes command arguments into key-value pairs.
  * 
  * The command
- * <pre>/example a letter b number c something</pre>
+ * <pre>/example a:letter b:number c:something</pre>
  * is an example of a situation where this could be useful.
  * 
- * The keys are not case sensitive, but the values are. Any
- * arguments that do not match the format are discarded.
+ * The keys are not case sensitive, but the values are.
  * 
  * @author Jacek Kuzemczak
  */
-public class PairArgumentProcessor extends ArgumentProcessor {
+public class KeyValueArgumentProcessor extends ArgumentProcessor {
 	
+	private String separator;
 	private LinkedHashMap<String, String> values;
+	private LinkedList<String> leftover;
 	
 	/**
-	 * @param args	The command arguments.
+	 * @param args			The command arguments.
+	 * @param seperator		The string used to separate the keys and values.
 	 */
-	public PairArgumentProcessor(String[] args){
+	public KeyValueArgumentProcessor(String[] args, String separator){
 		this.args = args;
+		this.separator = separator;
 		this.values = new LinkedHashMap<String, String>();
+		this.leftover = new LinkedList<String>();
 		
 		this.process();
 	}
 	
 	public void process(){
-		int k = 0;
-		int v = 1;
-		
-		while (k < this.args.length && v < this.args.length){
-			this.values.put(this.args[k].toLowerCase(), this.args[v]);
+		for (String argument : this.args){
+			String[] parts = argument.split(this.separator, 2);
 			
-			k += 2;
-			v += 2;
+			if (parts.length == 2){
+				this.values.put(parts[0].toLowerCase(), parts[1]);
+			}else{
+				this.leftover.add(argument);
+			}
 		}
 	}
 	
@@ -69,6 +74,15 @@ public class PairArgumentProcessor extends ArgumentProcessor {
 	 */
 	public Set<Entry<String, String>> getAll(){
 		return this.values.entrySet();
+	}
+	
+	/**
+	 * Gets all of the arguments that did not match the key-value format.
+	 * 
+	 * @return	The arguments.
+	 */
+	public LinkedList<String> getLeftOver(){
+		return this.leftover;
 	}
 	
 }

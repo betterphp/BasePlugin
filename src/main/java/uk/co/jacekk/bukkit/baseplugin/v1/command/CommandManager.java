@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.command;
+package uk.co.jacekk.bukkit.baseplugin.v1.command;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -8,7 +8,7 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.SimplePluginManager;
 
-import uk.co.jacekk.bukkit.baseplugin.BasePlugin;
+import uk.co.jacekk.bukkit.baseplugin.v1.BasePlugin;
 
 /**
  * Used to manage the commands for this plugin.

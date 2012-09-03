@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.config;
+package uk.co.jacekk.bukkit.baseplugin.v1.config;
 
 /**
  * Represents a config value for a plugin.

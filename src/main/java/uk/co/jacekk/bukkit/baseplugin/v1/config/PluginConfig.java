@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.config;
+package uk.co.jacekk.bukkit.baseplugin.v1.config;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
+import uk.co.jacekk.bukkit.baseplugin.v1.logging.PluginLogger;
 
 /**
  * The configuration of a plugin, this represents the config.yml (or other name) file.

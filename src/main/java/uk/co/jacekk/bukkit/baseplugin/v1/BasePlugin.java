@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin;
+package uk.co.jacekk.bukkit.baseplugin.v1;
 
 import java.io.File;
 
@@ -9,9 +9,9 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import uk.co.jacekk.bukkit.baseplugin.command.CommandManager;
-import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
-import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
+import uk.co.jacekk.bukkit.baseplugin.v1.command.CommandManager;
+import uk.co.jacekk.bukkit.baseplugin.v1.config.PluginConfig;
+import uk.co.jacekk.bukkit.baseplugin.v1.logging.PluginLogger;
 
 /**
  * The base class that the main plugin class should extend.
@@ -23,7 +23,7 @@ public abstract class BasePlugin extends JavaPlugin {
 	/**
 	 * The version of the BasePlugin library
 	 */
-	public static final String version = "0.3";
+	public static final String version = "1.0";
 	
 	/**
 	 * The {@link PluginDescriptionFile} for this plugin.
@@ -59,6 +59,7 @@ public abstract class BasePlugin extends JavaPlugin {
 	 * Sets up the default fields for the plugin.
 	 * 
 	 * @param createFolder	If this is true then the plugin's data folder will be created if it does not exist.
+	 * @param minVersion	The minimum version of the BasePlugin library that is required.
 	 */
 	public void onEnable(boolean createFolder){
 		this.description = this.getDescription();

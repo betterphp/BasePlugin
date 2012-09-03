@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.command;
+package uk.co.jacekk.bukkit.baseplugin.v1.command;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

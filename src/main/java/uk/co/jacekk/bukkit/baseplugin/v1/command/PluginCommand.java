@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.command;
+package uk.co.jacekk.bukkit.baseplugin.v1.command;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginIdentifiableCommand;
 import org.bukkit.plugin.Plugin;
 
-import uk.co.jacekk.bukkit.baseplugin.BasePlugin;
+import uk.co.jacekk.bukkit.baseplugin.v1.BasePlugin;
 
 /**
  * used internally to call the method that should handle a command, this would

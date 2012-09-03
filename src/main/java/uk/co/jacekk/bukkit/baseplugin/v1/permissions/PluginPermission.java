@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.permissions;
+package uk.co.jacekk.bukkit.baseplugin.v1.permissions;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.util;
+package uk.co.jacekk.bukkit.baseplugin.v1.util;
 
 import java.util.Collection;
 import java.util.List;

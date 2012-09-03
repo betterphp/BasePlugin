@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.update;
+package uk.co.jacekk.bukkit.baseplugin.v1.update;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -12,7 +12,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import uk.co.jacekk.bukkit.baseplugin.util.StringUtils;
+import uk.co.jacekk.bukkit.baseplugin.v1.util.StringUtils;
 
 /**
  * A BukkitDev specific implementation of {@link UpdateChecker}.

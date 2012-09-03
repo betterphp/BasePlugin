@@ -1,8 +1,8 @@
-package uk.co.jacekk.bukkit.baseplugin.event;
+package uk.co.jacekk.bukkit.baseplugin.v1.event;
 
 import org.bukkit.event.Listener;
 
-import uk.co.jacekk.bukkit.baseplugin.BaseObject;
+import uk.co.jacekk.bukkit.baseplugin.v1.BaseObject;
 
 /**
  * The base class that all listeners should extend.

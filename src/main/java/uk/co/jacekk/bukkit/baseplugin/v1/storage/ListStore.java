@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.storage;
+package uk.co.jacekk.bukkit.baseplugin.v1.storage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

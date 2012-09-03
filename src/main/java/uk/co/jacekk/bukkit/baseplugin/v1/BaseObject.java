@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin;
+package uk.co.jacekk.bukkit.baseplugin.v1;
 
 /**
  * The class that all other object belonging to this plugin should extend.

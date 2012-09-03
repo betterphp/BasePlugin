@@ -1,6 +1,6 @@
-package uk.co.jacekk.bukkit.baseplugin.scheduler;
+package uk.co.jacekk.bukkit.baseplugin.v1.scheduler;
 
-import uk.co.jacekk.bukkit.baseplugin.BaseObject;
+import uk.co.jacekk.bukkit.baseplugin.v1.BaseObject;
 
 /**
  * The base class that any repeating or scheduled tasks should extend.

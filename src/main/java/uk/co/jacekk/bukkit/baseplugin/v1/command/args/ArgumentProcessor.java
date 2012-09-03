@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.command.args;
+package uk.co.jacekk.bukkit.baseplugin.v1.command.args;
 
 /**
  * Used to process command arguments into an easy to work with format.
