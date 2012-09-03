@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.baseplugin.command.args;
+package uk.co.jacekk.bukkit.baseplugin.v1.command.args;
 
 import static org.junit.Assert.*;
 
