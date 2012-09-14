@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import uk.co.jacekk.bukkit.baseplugin.v1.command.args.PairArgumentProcessor;
+import uk.co.jacekk.bukkit.baseplugin.v2.command.args.PairArgumentProcessor;
 
 public class TestPairArgumentProcessor {
 	
