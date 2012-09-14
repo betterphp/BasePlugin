@@ -78,7 +78,7 @@ public class PluginConfig {
 	 * @return				The integer value or 0 if the key does not exist.
 	 */
 	public int getInt(PluginConfigKey configKey){
-		if (!this.containsKey(configKey)){
+		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
 			return 0;
 		}
 		
@@ -93,7 +93,7 @@ public class PluginConfig {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Integer> getIntList(PluginConfigKey configKey){
-		if (!this.containsKey(configKey)){
+		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
 			return new ArrayList<Integer>();
 		}
 		
@@ -111,7 +111,7 @@ public class PluginConfig {
 	 * @return				The double value or 0.0 if the key does not exist.
 	 */
 	public double getDouble(PluginConfigKey configKey){
-		if (!this.containsKey(configKey)){
+		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
 			return 0.0D;
 		}
 		
@@ -126,7 +126,7 @@ public class PluginConfig {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Double> getDoubleList(PluginConfigKey configKey){
-		if (!this.containsKey(configKey)){
+		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
 			return new ArrayList<Double>();
 		}
 		
@@ -144,7 +144,7 @@ public class PluginConfig {
 	 * @return				The long value or 0 if the key does not exist.
 	 */
 	public long getLong(PluginConfigKey configKey){
-		if (!this.containsKey(configKey)){
+		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
 			return 0L;
 		}
 		
@@ -159,7 +159,7 @@ public class PluginConfig {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Long> getLongList(PluginConfigKey configKey){
-		if (!this.containsKey(configKey)){
+		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
 			return new ArrayList<Long>();
 		}
 		
@@ -177,7 +177,7 @@ public class PluginConfig {
 	 * @return				The value or false if the key does not exist.
 	 */
 	public boolean getBoolean(PluginConfigKey configKey){
-		if (!this.containsKey(configKey)){
+		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
 			return false;
 		}
 		
@@ -191,7 +191,7 @@ public class PluginConfig {
 	 * @return				The value or an empty string if the key does not exist.
 	 */
 	public String getString(PluginConfigKey configKey){
-		if (!this.containsKey(configKey)){
+		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
 			return "";
 		}
 		
@@ -206,7 +206,7 @@ public class PluginConfig {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<String> getStringList(PluginConfigKey configKey){
-		if (!this.containsKey(configKey)){
+		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
 			return new ArrayList<String>();
 		}
 		
