@@ -17,6 +17,7 @@ import uk.co.jacekk.bukkit.baseplugin.v2.logging.PluginLogger;
  */
 public class PluginConfig {
 	
+	private File configFile;
 	private YamlConfiguration config;
 	private PluginConfigKey[] configDefaults;
 	
@@ -28,15 +29,12 @@ public class PluginConfig {
 	 * @param log				The {@link PluginLogger} to be used for any messages.
 	 */
 	public PluginConfig(File configFile, PluginConfigKey[] configDefaults, PluginLogger log){
+		this.configFile = configFile;
 		this.config = new YamlConfiguration();
 		this.configDefaults = configDefaults;
 		
 		if (configFile.exists()){
-			try {
-				this.config.load(configFile);
-			} catch (Exception e){
-				e.printStackTrace();
-			}
+			this.reload();
 		}
 		
 		boolean updateNeeded = false;
@@ -58,6 +56,17 @@ public class PluginConfig {
 			} catch (IOException e){
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	/**
+	 * Reloads the values in this config from the file.
+	 */
+	public void reload(){
+		try {
+			this.config.load(this.configFile);
+		} catch (Exception e){
+			e.printStackTrace();
 		}
 	}
 	
