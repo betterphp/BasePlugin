@@ -12,6 +12,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 import uk.co.jacekk.bukkit.baseplugin.v3.command.CommandManager;
 import uk.co.jacekk.bukkit.baseplugin.v3.config.PluginConfig;
 import uk.co.jacekk.bukkit.baseplugin.v3.logging.PluginLogger;
+import uk.co.jacekk.bukkit.baseplugin.v3.permissions.PermissionManager;
 
 /**
  * The base class that the main plugin class should extend.
@@ -23,7 +24,7 @@ public abstract class BasePlugin extends JavaPlugin {
 	/**
 	 * The version of the BasePlugin library
 	 */
-	public static final String version = "2.0";
+	public static final String version = "3.0";
 	
 	/**
 	 * The {@link PluginDescriptionFile} for this plugin.
@@ -47,6 +48,7 @@ public abstract class BasePlugin extends JavaPlugin {
 	
 	public Server server;
 	public PluginManager pluginManager;
+	public PermissionManager permissionManager;
 	public CommandManager commandManager;
 	public BukkitScheduler scheduler;
 	
@@ -70,6 +72,7 @@ public abstract class BasePlugin extends JavaPlugin {
 		
 		this.server = this.getServer();
 		this.pluginManager = this.server.getPluginManager();
+		this.permissionManager = new PermissionManager(this);
 		this.commandManager = new CommandManager(this);
 		this.scheduler = this.server.getScheduler();
 		
