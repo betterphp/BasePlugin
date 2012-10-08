@@ -60,6 +60,7 @@ public class CommandManager {
 		
 		for (Method method : cls.getMethods()){
 			CommandHandler commandInfo = method.getAnnotation(CommandHandler.class);
+			CommandTabCompletion tabInfo = method.getAnnotation(CommandTabCompletion.class);
 			
 			if (commandInfo != null){
 				if (!method.getReturnType().equals(Void.TYPE)){
@@ -67,7 +68,7 @@ public class CommandManager {
 				}else if (!Arrays.equals(method.getParameterTypes(), new Class<?>[]{CommandSender.class, String.class, String[].class})){
 					plugin.log.fatal("Incorrect arguments for command method " + method.getName() + " in " + cls.getName());
 				}else{
-					PluginCommand command = new PluginCommand(plugin, executor, method, commandInfo.names(), commandInfo.description(), commandInfo.usage());
+					PluginCommand command = new PluginCommand(plugin, executor, method, commandInfo.names(), commandInfo.description(), commandInfo.usage(), ((tabInfo == null) ? new String[]{} : tabInfo.value()));
 					
 					if (!this.registerCommand(command)){
 						plugin.log.fatal("Failed to register command for method " + method.getName() + " in " + cls.getName());
