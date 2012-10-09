@@ -53,7 +53,7 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 	}
 	
 //TODO: @Override
-	public List<String> tabComplete(String message){
+	public List<String> tabComplete(CommandSender sender, String message){
 		LinkedHashSet<String> completions = new LinkedHashSet<String>();
 		
 		if (message.contains(" ")){
