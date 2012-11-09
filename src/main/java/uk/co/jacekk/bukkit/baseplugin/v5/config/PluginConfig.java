@@ -2,7 +2,9 @@ package uk.co.jacekk.bukkit.baseplugin.v5.config;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang.ArrayUtils;
@@ -60,6 +62,57 @@ public class PluginConfig {
 	}
 	
 	/**
+	 * Creates a new config object that can be used to fetch the value of a {@link PluginConfigKey}
+	 * 
+	 * @param configFile		The file to be used to store this configuration (usually config.yml).
+	 * @param configDefaults	The class holding the default configuration options to be used if an entry cannot be found.
+	 * @param log				The {@link PluginLogger} to be used for any messages.
+	 */
+	public PluginConfig(File configFile, Class<?> configHolder, PluginLogger log){
+		List<PluginConfigKey> config = Arrays.asList();
+		
+		for (Field field : configHolder.getDeclaredFields()){
+			if (field.getType().equals(PluginConfigKey.class)){
+				try{
+					config.add((PluginConfigKey) field.get(null));
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		this.configFile = configFile;
+		this.config = new YamlConfiguration();
+		this.configDefaults = config.toArray(new PluginConfigKey[0]);
+		
+
+		if (configFile.exists()){
+			this.reload();
+		}
+		
+		boolean updateNeeded = false;
+		
+		for (PluginConfigKey entry : this.configDefaults){
+			String key = entry.getKey();
+			
+			if (this.config.contains(key) == false){
+				this.config.set(key, entry.getDefault());
+				
+				updateNeeded = true;
+			}
+		}
+		
+		if (updateNeeded){
+			try {
+				this.config.save(configFile);
+				log.info("The " + configFile.getName() + " file has been updated.");
+			} catch (IOException e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
 	 * Reloads the values in this config from the file.
 	 */
 	public void reload(){
@@ -87,7 +140,7 @@ public class PluginConfig {
 	 * @return				The integer value or 0 if the key does not exist.
 	 */
 	public int getInt(PluginConfigKey configKey){
-		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
+		if (!configKey.isDynamic() && !this.containsKey(configKey)){
 			return 0;
 		}
 		
@@ -102,7 +155,7 @@ public class PluginConfig {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Integer> getIntList(PluginConfigKey configKey){
-		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
+		if (!configKey.isDynamic() && !this.containsKey(configKey)){
 			return new ArrayList<Integer>();
 		}
 		
@@ -120,7 +173,7 @@ public class PluginConfig {
 	 * @return				The double value or 0.0 if the key does not exist.
 	 */
 	public double getDouble(PluginConfigKey configKey){
-		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
+		if (!configKey.isDynamic() && !this.containsKey(configKey)){
 			return 0.0D;
 		}
 		
@@ -135,7 +188,7 @@ public class PluginConfig {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Double> getDoubleList(PluginConfigKey configKey){
-		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
+		if (!configKey.isDynamic() && !this.containsKey(configKey)){
 			return new ArrayList<Double>();
 		}
 		
@@ -153,7 +206,7 @@ public class PluginConfig {
 	 * @return				The long value or 0 if the key does not exist.
 	 */
 	public long getLong(PluginConfigKey configKey){
-		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
+		if (!configKey.isDynamic() && !this.containsKey(configKey)){
 			return 0L;
 		}
 		
@@ -168,7 +221,7 @@ public class PluginConfig {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Long> getLongList(PluginConfigKey configKey){
-		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
+		if (!configKey.isDynamic() && !this.containsKey(configKey)){
 			return new ArrayList<Long>();
 		}
 		
@@ -186,7 +239,7 @@ public class PluginConfig {
 	 * @return				The value or false if the key does not exist.
 	 */
 	public boolean getBoolean(PluginConfigKey configKey){
-		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
+		if (!configKey.isDynamic() && !this.containsKey(configKey)){
 			return false;
 		}
 		
@@ -200,7 +253,7 @@ public class PluginConfig {
 	 * @return				The value or an empty string if the key does not exist.
 	 */
 	public String getString(PluginConfigKey configKey){
-		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
+		if (!configKey.isDynamic() && !this.containsKey(configKey)){
 			return "";
 		}
 		
@@ -215,7 +268,7 @@ public class PluginConfig {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<String> getStringList(PluginConfigKey configKey){
-		if (!(configKey instanceof DynamicConfigKey) && !this.containsKey(configKey)){
+		if (!configKey.isDynamic() && !this.containsKey(configKey)){
 			return new ArrayList<String>();
 		}
 		
