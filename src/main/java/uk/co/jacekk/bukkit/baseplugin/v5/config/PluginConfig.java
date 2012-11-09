@@ -22,6 +22,7 @@ public class PluginConfig {
 	private File configFile;
 	private YamlConfiguration config;
 	private PluginConfigKey[] configDefaults;
+	private PluginLogger log;
 	
 	/**
 	 * Creates a new config object that can be used to fetch the value of a {@link PluginConfigKey}
@@ -34,31 +35,9 @@ public class PluginConfig {
 		this.configFile = configFile;
 		this.config = new YamlConfiguration();
 		this.configDefaults = configDefaults;
+		this.log = log;
 		
-		if (configFile.exists()){
-			this.reload();
-		}
-		
-		boolean updateNeeded = false;
-		
-		for (PluginConfigKey entry : this.configDefaults){
-			String key = entry.getKey();
-			
-			if (this.config.contains(key) == false){
-				this.config.set(key, entry.getDefault());
-				
-				updateNeeded = true;
-			}
-		}
-		
-		if (updateNeeded){
-			try {
-				this.config.save(configFile);
-				log.info("The " + configFile.getName() + " file has been updated.");
-			} catch (IOException e){
-				e.printStackTrace();
-			}
-		}
+		this.updateFile();
 	}
 	
 	/**
@@ -84,8 +63,12 @@ public class PluginConfig {
 		this.configFile = configFile;
 		this.config = new YamlConfiguration();
 		this.configDefaults = config.toArray(new PluginConfigKey[0]);
+		this.log = log;
 		
-
+		this.updateFile();
+	}
+	
+	private void updateFile(){
 		if (configFile.exists()){
 			this.reload();
 		}
@@ -105,7 +88,7 @@ public class PluginConfig {
 		if (updateNeeded){
 			try {
 				this.config.save(configFile);
-				log.info("The " + configFile.getName() + " file has been updated.");
+				this.log.info("The " + configFile.getName() + " file has been updated.");
 			} catch (IOException e){
 				e.printStackTrace();
 			}
