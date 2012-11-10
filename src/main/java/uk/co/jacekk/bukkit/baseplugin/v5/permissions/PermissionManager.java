@@ -1,8 +1,7 @@
 package uk.co.jacekk.bukkit.baseplugin.v5.permissions;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.bukkit.permissions.Permission;
 
@@ -32,7 +31,7 @@ public class PermissionManager extends BaseObject<BasePlugin> {
 	 * @param permissionHolder	The class holding all of the {@link PluginPermission} objects.
 	 */
 	public void registerPermissions(Class<?> permissionHolder){
-		List<PluginPermission> perms = Arrays.asList();
+		ArrayList<PluginPermission> perms = new ArrayList<PluginPermission>();
 		
 		for (Field field : permissionHolder.getDeclaredFields()){
 			if (field.getType().equals(PluginPermission.class)){

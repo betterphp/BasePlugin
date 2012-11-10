@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang.ArrayUtils;
@@ -48,7 +47,7 @@ public class PluginConfig {
 	 * @param log				The {@link PluginLogger} to be used for any messages.
 	 */
 	public PluginConfig(File configFile, Class<?> configHolder, PluginLogger log){
-		List<PluginConfigKey> config = Arrays.asList();
+		ArrayList<PluginConfigKey> config = new ArrayList<PluginConfigKey>();
 		
 		for (Field field : configHolder.getDeclaredFields()){
 			if (field.getType().equals(PluginConfigKey.class)){
