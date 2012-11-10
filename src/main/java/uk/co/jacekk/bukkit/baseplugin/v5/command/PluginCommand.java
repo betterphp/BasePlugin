@@ -56,14 +56,6 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 	public List<String> tabComplete(CommandSender sender, String alias, String[] args){
 		ArrayList<String> completions = new ArrayList<String>();
 		
-		System.out.println("========================");
-		
-		for (String arg : args){
-			System.out.println("'" + arg + "'");
-		}
-		
-		System.out.println("========================");
-		
 		boolean empty = args[args.length - 1].isEmpty();
 		
 		if (args.length <= this.tabCompletion.length){
