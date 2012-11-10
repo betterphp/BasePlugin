@@ -77,7 +77,7 @@ public class PluginConfig {
 		for (PluginConfigKey entry : this.configDefaults){
 			String key = entry.getKey();
 			
-			if (this.config.contains(key) == false){
+			if (!this.config.contains(key)){
 				this.config.set(key, entry.getDefault());
 				
 				updateNeeded = true;

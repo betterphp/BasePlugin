@@ -15,7 +15,7 @@ public class ReflectionUtils {
 	 * 
 	 * @return	The value of the field.
 	 */
-	public static <Type> Type getFieldValue(Class<?> src, String name, Class<Type> type, Object from){
+	public static <T> T getFieldValue(Class<?> src, String name, Class<T> type, Object from){
 		try{
 			Field field = src.getDeclaredField(name);
 			field.setAccessible(true);

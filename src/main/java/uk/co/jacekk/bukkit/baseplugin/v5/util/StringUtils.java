@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public class StringUtils {
 	
-	private static final HashMap<String, Integer> stringValues = new HashMap<String, Integer>();
+	private static final HashMap<String, Integer> stringValues = new HashMap<String, Integer>(4);
 	
 	static{
 		stringValues.put("dev", -1);
