@@ -1,8 +1,8 @@
 package uk.co.jacekk.bukkit.baseplugin.v5.command;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.bukkit.OfflinePlayer;
@@ -52,49 +52,54 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 		return true;
 	}
 	
-//TODO: @Override
-	public List<String> tabComplete(CommandSender sender, String message){
-		LinkedHashSet<String> completions = new LinkedHashSet<String>();
+	@Override
+	public List<String> tabComplete(CommandSender sender, String alias, String[] args){
+		ArrayList<String> completions = new ArrayList<String>();
 		
-		if (message.contains(" ")){
-			String[] args = message.split(" ");
-			boolean empty = message.endsWith(" ");
+		System.out.println("========================");
+		
+		for (String arg : args){
+			System.out.println("'" + arg + "'");
+		}
+		
+		System.out.println("========================");
+		
+		boolean empty = args[args.length - 1].isEmpty();
+		
+		if (args.length <= this.tabCompletion.length){
+			String tab = this.tabCompletion[args.length - 1];
+			String last = args[args.length - 1].toLowerCase();
 			
-			if (args.length <= this.tabCompletion.length){
-				String tab = this.tabCompletion[args.length - ((empty) ? 1 : 2)];
-				String last = args[args.length - 1].toLowerCase();
-				
-				if (tab.equalsIgnoreCase("<online_player>")){
-					for (Player player : plugin.server.getOnlinePlayers()){
-				 		String playerName = player.getName();
-				 		String testName = playerName.toLowerCase();
-				 		
-				 		if (empty || testName.startsWith(last)){
-				 			completions.add(playerName);
-				 		}
-					}
-				}else if (tab.equalsIgnoreCase("<player>")){
-					for (OfflinePlayer player : plugin.server.getOfflinePlayers()){
-				 		String playerName = player.getName();
-				 		String testName = playerName.toLowerCase();
-				 		
-				 		if (empty || testName.startsWith(last)){
-				 			completions.add(playerName);
-				 		}
-					}
-				}else{
-					for (String value : tab.split("\\|")){
-						String testValue = value.toLowerCase();
-						
-						if (empty || value.startsWith(testValue)){
-							completions.add(value);
-						}
+			if (tab.equalsIgnoreCase("<online_player>")){
+				for (Player player : plugin.server.getOnlinePlayers()){
+			 		String playerName = player.getName();
+			 		String testName = playerName.toLowerCase();
+			 		
+			 		if (empty || testName.startsWith(last)){
+			 			completions.add(playerName);
+			 		}
+				}
+			}else if (tab.equalsIgnoreCase("<player>")){
+				for (OfflinePlayer player : plugin.server.getOfflinePlayers()){
+			 		String playerName = player.getName();
+			 		String testName = playerName.toLowerCase();
+			 		
+			 		if (empty || testName.startsWith(last)){
+			 			completions.add(playerName);
+			 		}
+				}
+			}else{
+				for (String value : tab.split("\\|")){
+					String testValue = value.toLowerCase();
+					
+					if (empty || value.startsWith(testValue)){
+						completions.add(value);
 					}
 				}
 			}
 		}
 		
-		return Arrays.asList((String[]) completions.toArray());
+		return completions;
 	}
 	
 }
