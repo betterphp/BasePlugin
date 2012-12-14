@@ -24,7 +24,7 @@ public abstract class BasePlugin extends JavaPlugin {
 	/**
 	 * The version of the BasePlugin library
 	 */
-	public static final String version = "5.0";
+	public static final String version = "6.0";
 	
 	/**
 	 * The {@link PluginDescriptionFile} for this plugin.
@@ -133,6 +133,24 @@ public abstract class BasePlugin extends JavaPlugin {
 	 */
 	public String formatMessage(String message){
 		return this.formatMessage(message, true, false);
+	}
+	
+	/**
+	 * Gets the File for the base directory of the plugin.
+	 * 
+	 * @return	The File
+	 */
+	public File getBaseDir(){
+		return this.baseDir;
+	}
+	
+	/**
+	 * Gets the path to the base directory of the plugin
+	 * 
+	 * @return	The path (does not end with a slash)
+	 */
+	public String getBaseDirPath(){
+		return this.baseDirPath;
 	}
 	
 }
