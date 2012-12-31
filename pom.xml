@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>uk.co.jacekk.bukkit</groupId>
 	<artifactId>baseplugin</artifactId>
-	<version>7.0-SNAPSHOT</version>
+	<version>7.0</version>
 	<packaging>jar</packaging>
 	
 	<name>BasePlugin</name>
@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.4.6-R0.2-SNAPSHOT</version>
+			<version>1.4.6-R0.3</version>
 			<scope>compile</scope>
 		</dependency>
 		
