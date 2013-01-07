@@ -261,4 +261,16 @@ public class PluginConfig {
 		return this.config.getStringList(configKey.getKey());
 	}
 	
+	/**
+	 * Sets the value for a config option.
+	 * 
+	 * @param configKey		The {@link PluginConfigKey} to set, this must be defined in the original option list.
+	 * @param value			The value to set this option to.
+	 */
+	public void set(PluginConfigKey configKey, Object value){
+		if (this.containsKey(configKey)){
+			this.config.set(configKey.getKey(), value);
+		}
+	}
+	
 }
