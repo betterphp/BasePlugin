@@ -270,6 +270,12 @@ public class PluginConfig {
 	public void set(PluginConfigKey configKey, Object value){
 		if (this.containsKey(configKey)){
 			this.config.set(configKey.getKey(), value);
+			
+			try{
+				this.config.save(configFile);
+			}catch (IOException e){
+				e.printStackTrace();
+			}
 		}
 	}
 	
