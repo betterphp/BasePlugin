@@ -272,7 +272,7 @@ public class PluginConfig {
 			this.config.set(configKey.getKey(), value);
 			
 			try{
-				this.config.save(configFile);
+				this.config.save(this.configFile);
 			}catch (IOException e){
 				e.printStackTrace();
 			}
