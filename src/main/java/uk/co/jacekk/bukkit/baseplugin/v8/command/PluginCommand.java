@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.baseplugin.v8.command;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,6 +80,26 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 			 		if (empty || testName.startsWith(last)){
 			 			completions.add(playerName);
 			 		}
+				}
+			}else if (tab.startsWith("[") && tab.endsWith("]")){
+				try{
+					Method tabHandler = this.handlerMethod.getDeclaringClass().getMethod(tab.substring(1, tab.length() - 1), CommandSender.class, String[].class);
+					
+					if (tabHandler.getReturnType().equals(List.class)){
+						for (String value : (List<String>) tabHandler.invoke(this.handler, sender, args)){
+							String testValue = value.toLowerCase();
+							
+							if (empty || testValue.startsWith(last)){
+								completions.add(value);
+							}
+						}
+					}
+				}catch (IllegalAccessException e){
+					e.printStackTrace();
+				}catch (InvocationTargetException e){
+					e.printStackTrace();
+				}catch (NoSuchMethodException e){
+					// TODO: Something ?
 				}
 			}else{
 				for (String value : tab.split("\\|")){

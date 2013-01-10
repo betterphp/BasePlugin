@@ -13,6 +13,7 @@ import java.lang.annotation.Target;
  * <ul>
  *   <li>&lt;online_player&gt; - A player that is currently online.</li>
  *   <li>&lt;player&gt; - A player that has connected at some point.</li>
+ *   <li>[methodName] - The name of a method in the same class that provides the list, this method should have the arguments methodName(CommandSender sender, String[] args)</li>
  * </ul>
  * 
  * @author Jacek Kuzemczak
