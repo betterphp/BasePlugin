@@ -46,7 +46,7 @@ public class ChatUtils {
 	 */
 	public static String parseFormattingCodes(String message){
 		for (Entry<String, ChatColor> entry : formattingCodeMap.entrySet()){
-			message.replaceAll(entry.getKey(), entry.getValue().toString());
+			message = message.replaceAll(entry.getKey(), entry.getValue().toString());
 		}
 		
 		return message;
