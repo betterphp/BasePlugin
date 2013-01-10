@@ -12,6 +12,7 @@ public class StringUtils {
 	private static final HashMap<String, Integer> stringValues = new HashMap<String, Integer>(4);
 	
 	static{
+		stringValues.put("snapshot", -1);
 		stringValues.put("dev", -1);
 		stringValues.put("alpha", 1);
 		stringValues.put("beta", 2);
