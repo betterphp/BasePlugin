@@ -105,7 +105,7 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 				for (String value : tab.split("\\|")){
 					String testValue = value.toLowerCase();
 					
-					if (empty || value.startsWith(last)){
+					if (empty || testValue.startsWith(last)){
 						completions.add(value);
 					}
 				}
