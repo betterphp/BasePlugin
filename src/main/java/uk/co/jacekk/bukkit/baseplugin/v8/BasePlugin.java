@@ -105,6 +105,7 @@ public abstract class BasePlugin extends JavaPlugin {
 		}
 		
 		line.append("] ");
+		line.append(ChatColor.RESET);
 		line.append(message);
 		
 		return line.toString();
