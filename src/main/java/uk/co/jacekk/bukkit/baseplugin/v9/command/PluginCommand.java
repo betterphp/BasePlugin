@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -15,6 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import uk.co.jacekk.bukkit.baseplugin.v9.BasePlugin;
+import uk.co.jacekk.bukkit.baseplugin.v9.util.ListUtils;
 
 /**
  * used internally to call the method that should handle a command, this would
@@ -52,15 +54,23 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args){
 		try{
+			Method handlerMethod = null;
+			BaseCommandExecutor<? extends BasePlugin> handler = null;
+			
 			if (args.length > 0 && this.subCommands.containsKey(args[0])){
-				String[] subArgs = new String[args.length - 1];
+				handlerMethod = this.subCommands.get(args[0]).handlerMethod;
+				handler = this.subCommands.get(args[0]).handler;
 				
+				String[] subArgs = new String[args.length - 1];
 				System.arraycopy(args, 1, subArgs, 0, subArgs.length);
 				
-				this.subCommands.get(args[0]).execute(sender, label, subArgs);
+				args = subArgs;
 			}else{
-				this.handlerMethod.invoke(this.handler, sender, label, args);
+				handlerMethod = this.handlerMethod;
+				handler = this.handler;
 			}
+			
+			handlerMethod.invoke(handler, sender, label, args);
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -70,12 +80,31 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 	
 	@Override
 	public List<String> tabComplete(CommandSender sender, String alias, String[] args){
+		Method handlerMethod = null;
+		BaseCommandExecutor<? extends BasePlugin> handler = null;
+		String[] tabCompletion = null;
+		
+		if (args.length > 1 && this.subCommands.containsKey(args[0])){
+			handlerMethod = this.subCommands.get(args[0]).handlerMethod;
+			handler = this.subCommands.get(args[0]).handler;
+			tabCompletion = this.subCommands.get(args[0]).tabCompletion;
+			
+			String[] subArgs = new String[args.length - 1];
+			System.arraycopy(args, 1, subArgs, 0, subArgs.length);
+			
+			args = subArgs;
+		}else{
+			handlerMethod = this.handlerMethod;
+			handler = this.handler;
+			tabCompletion = this.tabCompletion;
+		}
+		
 		ArrayList<String> completions = new ArrayList<String>();
 		
 		boolean empty = args[args.length - 1].isEmpty();
 		
-		if (args.length <= this.tabCompletion.length){
-			String tab = this.tabCompletion[args.length - 1];
+		if (args.length <= tabCompletion.length){
+			String tab = tabCompletion[args.length - 1];
 			String last = args[args.length - 1].toLowerCase();
 			
 			if (tab.equalsIgnoreCase("<online_player>")){
@@ -98,10 +127,10 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 				}
 			}else if (tab.startsWith("[") && tab.endsWith("]")){
 				try{
-					Method tabHandler = this.handlerMethod.getDeclaringClass().getMethod(tab.substring(1, tab.length() - 1), CommandSender.class, String[].class);
+					Method tabHandler = handlerMethod.getDeclaringClass().getMethod(tab.substring(1, tab.length() - 1), CommandSender.class, String[].class);
 					
 					if (tabHandler.getReturnType().equals(List.class)){
-						for (String value : (List<String>) tabHandler.invoke(this.handler, sender, args)){
+						for (String value : (List<String>) tabHandler.invoke(handler, sender, args)){
 							String testValue = value.toLowerCase();
 							
 							if (empty || testValue.startsWith(last)){
@@ -114,7 +143,7 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 				}catch (InvocationTargetException e){
 					e.printStackTrace();
 				}catch (NoSuchMethodException e){
-					// TODO: Something ?
+					e.printStackTrace();
 				}
 			}else{
 				for (String value : tab.split("\\|")){

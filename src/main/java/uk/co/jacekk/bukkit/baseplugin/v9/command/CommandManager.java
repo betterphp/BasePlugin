@@ -57,7 +57,7 @@ public class CommandManager {
 				}else if (!Arrays.equals(method.getParameterTypes(), new Class<?>[]{CommandSender.class, String.class, String[].class})){
 					plugin.log.fatal("Incorrect arguments for command method " + method.getName() + " in " + cls.getName());
 				}else{
-					PluginCommand command = new PluginCommand(plugin, executor, method, commandInfo.names(), commandInfo.description(), commandInfo.usage(), ((tabInfo == null) ? new String[]{} : tabInfo.value()));
+					PluginCommand command = new PluginCommand(plugin, executor, method, commandInfo.names(), commandInfo.description(), commandInfo.usage(), ((tabInfo == null) ? new String[0] : tabInfo.value()));
 					
 					if (!this.registerCommand(command)){
 						plugin.log.fatal("Failed to register command for method " + method.getName() + " in " + cls.getName());
@@ -74,7 +74,7 @@ public class CommandManager {
 					if (parent == null){
 						plugin.log.fatal("Attempted to register sub-command of " + subCommandInfo.parent() + " before main handler.");
 					}else{
-						parent.registerSubCommandHandler(subCommandInfo.name(), new PluginSubCommand(executor, method));
+						parent.registerSubCommandHandler(subCommandInfo.name(), new PluginSubCommand(executor, method, ((tabInfo == null) ? new String[0] : tabInfo.value())));
 					}
 				}
 			}
