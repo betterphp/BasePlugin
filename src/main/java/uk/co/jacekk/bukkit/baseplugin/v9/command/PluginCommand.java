@@ -27,7 +27,7 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 	private BasePlugin plugin;
 	private BaseCommandExecutor<? extends BasePlugin> handler;
 	private Method handlerMethod;
-	private HashMap<String, Method> subCommandHandlers;
+	private HashMap<String, PluginSubCommand> subCommands;
 	private String[] tabCompletion;
 	
 	public PluginCommand(BasePlugin plugin, BaseCommandExecutor<? extends BasePlugin> handler, Method handlerMethod, String[] names, String description, String usage, String[] tabCompletion){
@@ -36,12 +36,12 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 		this.plugin = plugin;
 		this.handler = handler;
 		this.handlerMethod = handlerMethod;
-		this.subCommandHandlers = new HashMap<String, Method>();
+		this.subCommands = new HashMap<String, PluginSubCommand>();
 		this.tabCompletion = tabCompletion;
 	}
 	
-	protected void registerSubCommandHandler(String name, Method handler){
-		this.subCommandHandlers.put(name, handler);
+	protected void registerSubCommandHandler(String name, PluginSubCommand handler){
+		this.subCommands.put(name, handler);
 	}
 	
 	@Override
@@ -52,12 +52,12 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args){
 		try{
-			if (args.length > 0 && this.subCommandHandlers.containsKey(args[0])){
+			if (args.length > 0 && this.subCommands.containsKey(args[0])){
 				String[] subArgs = new String[args.length - 1];
 				
 				System.arraycopy(args, 1, subArgs, 0, subArgs.length);
 				
-				this.subCommandHandlers.get(args[0]).invoke(this.handler, sender, label, subArgs);
+				this.subCommands.get(args[0]).execute(sender, label, subArgs);
 			}else{
 				this.handlerMethod.invoke(this.handler, sender, label, args);
 			}

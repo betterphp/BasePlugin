@@ -74,7 +74,7 @@ public class CommandManager {
 					if (parent == null){
 						plugin.log.fatal("Attempted to register sub-command of " + subCommandInfo.parent() + " before main handler.");
 					}else{
-						parent.registerSubCommandHandler(subCommandInfo.name(), method);
+						parent.registerSubCommandHandler(subCommandInfo.name(), new PluginSubCommand(executor, method));
 					}
 				}
 			}
