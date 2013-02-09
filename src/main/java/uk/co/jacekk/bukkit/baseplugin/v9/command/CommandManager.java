@@ -43,12 +43,10 @@ public class CommandManager {
 	 * @param executor	The command executor to register.
 	 */
 	public void registerCommandExecutor(BaseCommandExecutor<? extends BasePlugin> executor){
-		@SuppressWarnings("unchecked")
 		Class<BaseCommandExecutor<? extends BasePlugin>> cls = (Class<BaseCommandExecutor<? extends BasePlugin>>) executor.getClass();
 		
-		for (Method method : cls.getMethods()){
+		for (Method method : cls.getDeclaredMethods()){
 			CommandHandler commandInfo = method.getAnnotation(CommandHandler.class);
-			SubCommandHandler subCommandInfo = method.getAnnotation(SubCommandHandler.class);
 			CommandTabCompletion tabInfo = method.getAnnotation(CommandTabCompletion.class);
 			
 			if (commandInfo != null){
@@ -63,7 +61,14 @@ public class CommandManager {
 						plugin.log.fatal("Failed to register command for method " + method.getName() + " in " + cls.getName());
 					}
 				}
-			}else if (subCommandInfo != null){
+			}
+		}
+		
+		for (Method method : cls.getDeclaredMethods()){
+			SubCommandHandler subCommandInfo = method.getAnnotation(SubCommandHandler.class);
+			CommandTabCompletion tabInfo = method.getAnnotation(CommandTabCompletion.class);
+			
+			if (subCommandInfo != null){
 				if (!method.getReturnType().equals(Void.TYPE)){
 					plugin.log.fatal("Incorrect return type for command method " + method.getName() + " in " + cls.getName());
 				}else if (!Arrays.equals(method.getParameterTypes(), new Class<?>[]{CommandSender.class, String.class, String[].class})){
