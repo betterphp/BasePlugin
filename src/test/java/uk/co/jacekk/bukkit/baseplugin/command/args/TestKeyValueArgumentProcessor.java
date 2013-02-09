@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import uk.co.jacekk.bukkit.baseplugin.v9.command.args.KeyValueArgumentProcessor;
+import uk.co.jacekk.bukkit.baseplugin.v9_1.command.args.KeyValueArgumentProcessor;
 
 public class TestKeyValueArgumentProcessor {
 	

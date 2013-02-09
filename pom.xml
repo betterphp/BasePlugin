@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>uk.co.jacekk.bukkit</groupId>
 	<artifactId>baseplugin</artifactId>
-	<version>9.0</version>
+	<version>9.1</version>
 	<packaging>jar</packaging>
 	
 	<name>BasePlugin</name>
