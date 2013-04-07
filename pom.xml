@@ -3,14 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>uk.co.jacekk.bukkit</groupId>
 	<artifactId>baseplugin</artifactId>
-	<version>9.1</version>
+	<version>10.0</version>
 	<packaging>jar</packaging>
 	
 	<name>BasePlugin</name>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.build.packageVersion>9_1</project.build.packageVersion>
 	</properties>
 	
 	<repositories>
@@ -43,34 +42,6 @@
 		<finalName>${project.name}</finalName>
 		
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.0</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<finalName>${project.name}</finalName>
-					<artifactSet>
-						<includes>
-							<include>uk.co.jacekk.bukkit:baseplugin</include>
-						</includes>
-					</artifactSet>
-					<relocations>
-						<relocation>
-							<pattern>uk.co.jacekk.bukkit.baseplugin</pattern>
-							<shadedPattern>uk.co.jacekk.bukkit.baseplugin.v${project.build.packageVersion}</shadedPattern>
-						</relocation>
-					</relocations>
-				</configuration>
-			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
