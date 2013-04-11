@@ -41,6 +41,7 @@ public class CommandManager {
 	 * Registers a new command executor.
 	 * 
 	 * @param executor	The command executor to register.
+	 * @throws CommandRegistrationException if the registration fails
 	 */
 	public void registerCommandExecutor(BaseCommandExecutor<? extends BasePlugin> executor){
 		Class<BaseCommandExecutor<? extends BasePlugin>> cls = (Class<BaseCommandExecutor<? extends BasePlugin>>) executor.getClass();
@@ -51,14 +52,14 @@ public class CommandManager {
 			
 			if (commandInfo != null){
 				if (!method.getReturnType().equals(Void.TYPE)){
-					plugin.log.fatal("Incorrect return type for command method " + method.getName() + " in " + cls.getName());
+					throw new CommandRegistrationException("Incorrect return type for command method " + method.getName() + " in " + cls.getName());
 				}else if (!Arrays.equals(method.getParameterTypes(), new Class<?>[]{CommandSender.class, String.class, String[].class})){
-					plugin.log.fatal("Incorrect arguments for command method " + method.getName() + " in " + cls.getName());
+					throw new CommandRegistrationException("Incorrect arguments for command method " + method.getName() + " in " + cls.getName());
 				}else{
 					PluginCommand command = new PluginCommand(plugin, executor, method, commandInfo.names(), commandInfo.description(), commandInfo.usage(), ((tabInfo == null) ? new String[0] : tabInfo.value()));
 					
 					if (!this.registerCommand(command)){
-						plugin.log.fatal("Failed to register command for method " + method.getName() + " in " + cls.getName());
+						throw new CommandRegistrationException("Failed to register command for method " + method.getName() + " in " + cls.getName());
 					}
 				}
 			}
@@ -70,17 +71,17 @@ public class CommandManager {
 			
 			if (subCommandInfo != null){
 				if (!method.getReturnType().equals(Void.TYPE)){
-					plugin.log.fatal("Incorrect return type for command method " + method.getName() + " in " + cls.getName());
+					throw new CommandRegistrationException("Incorrect return type for command method " + method.getName() + " in " + cls.getName());
 				}else if (!Arrays.equals(method.getParameterTypes(), new Class<?>[]{CommandSender.class, String.class, String[].class})){
-					plugin.log.fatal("Incorrect arguments for command method " + method.getName() + " in " + cls.getName());
+					throw new CommandRegistrationException("Incorrect arguments for command method " + method.getName() + " in " + cls.getName());
 				}else{
 					PluginCommand parent = (PluginCommand) this.commandMap.getCommand(subCommandInfo.parent());
 					
 					if (parent == null){
-						plugin.log.fatal("Attempted to register sub-command of " + subCommandInfo.parent() + " before main handler.");
-					}else{
-						parent.registerSubCommandHandler(subCommandInfo.name(), new PluginSubCommand(executor, method, ((tabInfo == null) ? new String[0] : tabInfo.value())));
+						throw new CommandRegistrationException("Attempted to register sub-command of " + subCommandInfo.parent() + " before main handler.");
 					}
+					
+					parent.registerSubCommandHandler(subCommandInfo.name(), new PluginSubCommand(executor, method, ((tabInfo == null) ? new String[0] : tabInfo.value())));
 				}
 			}
 		}
