@@ -64,7 +64,7 @@ public class StringUtils {
 			}
 		}
 		
-		return -1;
+		return 0;
 	}
 	
 }
