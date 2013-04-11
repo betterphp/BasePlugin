@@ -1,6 +1,6 @@
 package uk.co.jacekk.bukkit.baseplugin.command.args;
 
-import static org.junit.Assert.*;
+import org.junit.Assert;
 
 import org.junit.Test;
 
@@ -9,32 +9,32 @@ import uk.co.jacekk.bukkit.baseplugin.command.args.PairArgumentProcessor;
 public class TestPairArgumentProcessor {
 	
 	@Test
-	public void test(){
+	public void testPairArgumentProcessor(){
 		PairArgumentProcessor safe = new PairArgumentProcessor(new String[]{"key", "value", "test", "another"});
 		
-		assertNotNull(safe.args);
+		Assert.assertNotNull(safe.args);
 		
-		assertNotNull(safe.get("key"));
-		assertNotNull(safe.get("TEST"));
+		Assert.assertNotNull(safe.get("key"));
+		Assert.assertNotNull(safe.get("TEST"));
 		
-		assertTrue(safe.contains("key"));
-		assertTrue(safe.contains("TEST"));
+		Assert.assertTrue(safe.contains("key"));
+		Assert.assertTrue(safe.contains("TEST"));
 		
-		assertTrue(safe.get("key").equals("value"));
-		assertTrue(safe.get("test").equals("another"));
+		Assert.assertTrue(safe.get("key").equals("value"));
+		Assert.assertTrue(safe.get("test").equals("another"));
 		
 		PairArgumentProcessor extra = new PairArgumentProcessor(new String[]{"key", "value", "test", "another", "extra"});
 		
-		assertNotNull(extra.args);
+		Assert.assertNotNull(extra.args);
 		
-		assertNotNull(extra.get("key"));
-		assertNotNull(extra.get("TEST"));
+		Assert.assertNotNull(extra.get("key"));
+		Assert.assertNotNull(extra.get("TEST"));
 		
-		assertTrue(extra.contains("key"));
-		assertTrue(extra.contains("TEST"));
+		Assert.assertTrue(extra.contains("key"));
+		Assert.assertTrue(extra.contains("TEST"));
 		
-		assertTrue(extra.get("key").equals("value"));
-		assertTrue(extra.get("test").equals("another"));
+		Assert.assertTrue(extra.get("key").equals("value"));
+		Assert.assertTrue(extra.get("test").equals("another"));
 	}
 	
 }
