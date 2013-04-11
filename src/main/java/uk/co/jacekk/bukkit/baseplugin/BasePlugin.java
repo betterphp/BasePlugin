@@ -59,6 +59,11 @@ public abstract class BasePlugin extends JavaPlugin {
 	public PluginConfig config;
 	
 	/**
+	 * The display name of the plugin.
+	 */
+	public String displayName;
+	
+	/**
 	 * Sets up the default fields for the plugin.
 	 * 
 	 * @param createFolder	If this is true then the plugin's data folder will be created if it does not exist.
@@ -87,6 +92,8 @@ public abstract class BasePlugin extends JavaPlugin {
 		if (createFolder && !this.baseDir.exists()){
 			this.baseDir.mkdirs();
 		}
+		
+		this.displayName = this.description.getName();
 	}
 	
 	/**
@@ -105,7 +112,7 @@ public abstract class BasePlugin extends JavaPlugin {
 		}
 		
 		line.append("[");
-		line.append(this.description.getName());
+		line.append(this.getDisplayName());
 		
 		if (version){
 			line.append(" v");
@@ -160,6 +167,26 @@ public abstract class BasePlugin extends JavaPlugin {
 	 */
 	public String getBaseDirPath(){
 		return this.baseDirPath;
+	}
+	
+	/**
+	 * Gets the plugin's display name, this defaults to the name and is
+	 * used for the formatMessage() method.
+	 * 
+	 * @return The display name.
+	 */
+	public String getDisplayName(){
+		return this.displayName;
+	}
+	
+	/**
+	 * Sets the plugin's display name, this defaults to the name and is
+	 * used for the formatMessage() method.
+	 * 
+	 * @param displayName The display name.
+	 */
+	public void setDisplayName(String displayName){
+		this.displayName = displayName;
 	}
 	
 }
