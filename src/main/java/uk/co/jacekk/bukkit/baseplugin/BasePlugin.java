@@ -24,7 +24,8 @@ public abstract class BasePlugin extends JavaPlugin {
 	/**
 	 * The version of the BasePlugin library
 	 */
-	public static final String version = "10.0";
+	public static final String VERSION = "10.1";
+	private static final String PACKAGE_NAME = "10_1";
 	
 	/**
 	 * The {@link PluginDescriptionFile} for this plugin.
@@ -64,6 +65,13 @@ public abstract class BasePlugin extends JavaPlugin {
 	 * @param minVersion	The minimum version of the BasePlugin library that is required.
 	 */
 	public void onEnable(boolean createFolder){
+		// This prevents Maven Shade plugin from replacing the package name
+		String packageName = new String(new char[]{'u', 'k', '.', 'c', 'o', '.', 'j', 'a', 'c', 'e', 'k', 'k', '.', 'b', 'u', 'k', 'k', 'i', 't', '.', 'b', 'a', 's', 'e', 'p', 'l', 'u', 'g', 'i', 'n'});
+		
+		if (!BasePlugin.class.getName().equals(packageName + ".v" + PACKAGE_NAME + ".BasePlugin")){
+			throw new PackageNameException(BasePlugin.class.getName());
+		}
+		
 		this.description = this.getDescription();
 		this.log = new PluginLogger(this);
 		
