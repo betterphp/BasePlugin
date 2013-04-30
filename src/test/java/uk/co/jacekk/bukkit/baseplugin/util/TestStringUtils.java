@@ -18,6 +18,8 @@ public class TestStringUtils {
 		Assert.assertTrue(StringUtils.versionCompare("0.1-beta", "0.2-alpha") == -1);
 		Assert.assertTrue(StringUtils.versionCompare("0.2-alpha", "0.1-beta") == 1);
 		Assert.assertTrue(StringUtils.versionCompare("0.1-snapshot", "0.1-snapshot") == 0);
+		Assert.assertTrue(StringUtils.versionCompare("0.1-snapshot", "0.1-snapshot-b12") == -1);
+		Assert.assertTrue(StringUtils.versionCompare("0.1-snapshot-b14", "0.1-snapshot-b12") == 1);
 		Assert.assertTrue(StringUtils.versionCompare("0.1-dev", "0.1-snapshot") == 0);
 		Assert.assertTrue(StringUtils.versionCompare("0.1-release", "0.1-beta") == 1);
 	}
