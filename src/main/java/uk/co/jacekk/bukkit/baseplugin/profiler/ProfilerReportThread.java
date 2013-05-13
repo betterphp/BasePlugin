@@ -31,9 +31,7 @@ public class ProfilerReportThread extends Thread implements Runnable {
 	public void run(){
 		while (true){
 			try{
-				//Thread.sleep(3600000); // 1 hour
-				
-				Thread.sleep(1000); // 10 seconds
+				Thread.sleep(3600000); // 1 hour
 				
 				String report = this.profiler.generateReport();
 				
