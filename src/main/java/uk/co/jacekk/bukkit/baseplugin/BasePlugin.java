@@ -13,6 +13,8 @@ import uk.co.jacekk.bukkit.baseplugin.command.CommandManager;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
 import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
 import uk.co.jacekk.bukkit.baseplugin.permissions.PermissionManager;
+import uk.co.jacekk.bukkit.baseplugin.profiler.PluginProfiler;
+import uk.co.jacekk.bukkit.baseplugin.profiler.ProfilerReportThread;
 
 /**
  * The base class that the main plugin class should extend.
@@ -24,8 +26,8 @@ public abstract class BasePlugin extends JavaPlugin {
 	/**
 	 * The version of the BasePlugin library
 	 */
-	public static final String VERSION = "10.1";
-	private static final String PACKAGE_NAME = "10_1";
+	public static final String VERSION = "11.0";
+	private static final String PACKAGE_NAME = "11_0";
 	
 	/**
 	 * The {@link PluginDescriptionFile} for this plugin.
@@ -62,6 +64,11 @@ public abstract class BasePlugin extends JavaPlugin {
 	 * The display name of the plugin.
 	 */
 	public String displayName;
+	
+	/**
+	 * The method profiler.
+	 */
+	private PluginProfiler profiler;
 	
 	/**
 	 * Sets up the default fields for the plugin.
@@ -187,6 +194,19 @@ public abstract class BasePlugin extends JavaPlugin {
 	 */
 	public void setDisplayName(String displayName){
 		this.displayName = displayName;
+	}
+	
+	/**
+	 * Enables the method profiler for this plugin.
+	 */
+	protected void enableProfiling(){
+		if (this.profiler != null){
+			return;
+		}
+		
+		this.profiler = new PluginProfiler(this);
+		
+		(new ProfilerReportThread(this.profiler)).start();
 	}
 	
 }
