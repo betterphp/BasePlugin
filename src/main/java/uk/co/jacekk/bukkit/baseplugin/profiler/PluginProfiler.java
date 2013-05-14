@@ -35,7 +35,7 @@ public class PluginProfiler extends BaseObject<BasePlugin> {
 		this.eventProfilers = new ArrayList<EventProfiler>();
 		this.commandProfilers = new ArrayList<CommandProfiler>();
 		
-		this.lastReport = System.currentTimeMillis();
+		this.lastReport = System.nanoTime();
 		
 		try{
 			for (BukkitTask task : this.plugin.scheduler.getPendingTasks()){
@@ -109,7 +109,7 @@ public class PluginProfiler extends BaseObject<BasePlugin> {
 		report.append(",");
 		
 		report.append("duration=");
-		report.append(System.currentTimeMillis() - this.lastReport);
+		report.append(System.nanoTime() - this.lastReport);
 		
 		report.append("]");
 		report.append('\n');
@@ -139,7 +139,7 @@ public class PluginProfiler extends BaseObject<BasePlugin> {
 			commandProfiler.reset();
 		}
 		
-		this.lastReport = System.currentTimeMillis();
+		this.lastReport = System.nanoTime();
 		
 		return report.toString();
 	}
