@@ -1,6 +1,9 @@
 package uk.co.jacekk.bukkit.baseplugin;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -71,6 +74,11 @@ public abstract class BasePlugin extends JavaPlugin {
 	private PluginProfiler profiler;
 	
 	/**
+	 * The Jenkins build number
+	 */
+	private Integer buildNumber;
+	
+	/**
 	 * Sets up the default fields for the plugin.
 	 * 
 	 * @param createFolder	If this is true then the plugin's data folder will be created if it does not exist.
@@ -101,6 +109,23 @@ public abstract class BasePlugin extends JavaPlugin {
 		}
 		
 		this.displayName = this.description.getName();
+		
+		try{
+			JarInputStream jar = new JarInputStream(new FileInputStream(this.getFile()));
+			Manifest manifest = jar.getManifest();
+			
+			if (manifest != null){
+				String number = manifest.getMainAttributes().getValue("Build-Number");
+				
+				if (number != null){
+					this.buildNumber = Integer.parseInt(number);
+				}
+			}
+			
+			jar.close();
+		}catch (Exception e){
+			this.log.warn("Failed to read build number: " + e.getMessage());
+		}
 	}
 	
 	/**
@@ -197,6 +222,15 @@ public abstract class BasePlugin extends JavaPlugin {
 	}
 	
 	/**
+	 * Gets the Jenkins build number.
+	 * 
+	 * @return The number
+	 */
+	public int getBuildNumber(){
+		return this.buildNumber;
+	}
+	
+	/**
 	 * Enables the method profiler for this plugin.
 	 */
 	protected void enableProfiling(){
@@ -204,8 +238,11 @@ public abstract class BasePlugin extends JavaPlugin {
 			return;
 		}
 		
-		this.profiler = new PluginProfiler(this);
+		if (this.buildNumber == null){
+			throw new IllegalStateException("Build number not defined");
+		}
 		
+		this.profiler = new PluginProfiler(this);
 		(new ProfilerReportThread(this.profiler)).start();
 	}
 	

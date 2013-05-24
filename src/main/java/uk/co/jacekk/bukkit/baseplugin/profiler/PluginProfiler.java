@@ -108,6 +108,10 @@ public class PluginProfiler extends BaseObject<BasePlugin> {
 		report.append(this.plugin.getDescription().getVersion());
 		report.append(",");
 		
+		report.append("buildNumber=");
+		report.append(this.plugin.getBuildNumber());
+		report.append(",");
+		
 		report.append("duration=");
 		report.append(System.nanoTime() - this.lastReport);
 		
