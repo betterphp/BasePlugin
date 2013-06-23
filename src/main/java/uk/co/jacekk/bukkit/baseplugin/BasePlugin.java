@@ -1,9 +1,6 @@
 package uk.co.jacekk.bukkit.baseplugin;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.util.jar.JarInputStream;
-import java.util.jar.Manifest;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -16,8 +13,6 @@ import uk.co.jacekk.bukkit.baseplugin.command.CommandManager;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
 import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
 import uk.co.jacekk.bukkit.baseplugin.permissions.PermissionManager;
-import uk.co.jacekk.bukkit.baseplugin.profiler.PluginProfiler;
-import uk.co.jacekk.bukkit.baseplugin.profiler.ProfilerReportThread;
 
 /**
  * The base class that the main plugin class should extend.
@@ -29,8 +24,8 @@ public abstract class BasePlugin extends JavaPlugin {
 	/**
 	 * The version of the BasePlugin library
 	 */
-	public static final String VERSION = "11.1";
-	private static final String PACKAGE_NAME = "11_1";
+	public static final String VERSION = "12";
+	private static final String PACKAGE_NAME = "12";
 	
 	/**
 	 * The {@link PluginDescriptionFile} for this plugin.
@@ -69,16 +64,6 @@ public abstract class BasePlugin extends JavaPlugin {
 	public String displayName;
 	
 	/**
-	 * The method profiler.
-	 */
-	private PluginProfiler profiler;
-	
-	/**
-	 * The Jenkins build number
-	 */
-	private Integer buildNumber;
-	
-	/**
 	 * Sets up the default fields for the plugin.
 	 * 
 	 * @param createFolder	If this is true then the plugin's data folder will be created if it does not exist.
@@ -109,23 +94,6 @@ public abstract class BasePlugin extends JavaPlugin {
 		}
 		
 		this.displayName = this.description.getName();
-		
-		try{
-			JarInputStream jar = new JarInputStream(new FileInputStream(this.getFile()));
-			Manifest manifest = jar.getManifest();
-			
-			if (manifest != null){
-				String number = manifest.getMainAttributes().getValue("Build-Number");
-				
-				if (number != null){
-					this.buildNumber = Integer.parseInt(number);
-				}
-			}
-			
-			jar.close();
-		}catch (Exception e){
-			this.log.warn("Failed to read build number: " + e.getMessage());
-		}
 	}
 	
 	/**
@@ -219,31 +187,6 @@ public abstract class BasePlugin extends JavaPlugin {
 	 */
 	public void setDisplayName(String displayName){
 		this.displayName = displayName;
-	}
-	
-	/**
-	 * Gets the Jenkins build number.
-	 * 
-	 * @return The number
-	 */
-	public int getBuildNumber(){
-		return this.buildNumber;
-	}
-	
-	/**
-	 * Enables the method profiler for this plugin.
-	 */
-	protected void enableProfiling(){
-		if (this.profiler != null){
-			return;
-		}
-		
-		if (this.buildNumber == null){
-			throw new IllegalStateException("Build number not defined");
-		}
-		
-		this.profiler = new PluginProfiler(this);
-		(new ProfilerReportThread(this.profiler)).start();
 	}
 	
 }
