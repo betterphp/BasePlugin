@@ -11,7 +11,6 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 import uk.co.jacekk.bukkit.baseplugin.command.CommandManager;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
-import uk.co.jacekk.bukkit.baseplugin.conversation.ConversationManager;
 import uk.co.jacekk.bukkit.baseplugin.logging.PluginLogger;
 import uk.co.jacekk.bukkit.baseplugin.permissions.PermissionManager;
 
@@ -25,8 +24,8 @@ public abstract class BasePlugin extends JavaPlugin {
 	/**
 	 * The version of the BasePlugin library
 	 */
-	public static final String VERSION = "13";
-	private static final String PACKAGE_NAME = "13";
+	public static final String VERSION = "13.1";
+	private static final String PACKAGE_NAME = "13_1";
 	
 	/**
 	 * The {@link PluginDescriptionFile} for this plugin.
@@ -52,7 +51,6 @@ public abstract class BasePlugin extends JavaPlugin {
 	public PluginManager pluginManager;
 	public PermissionManager permissionManager;
 	public CommandManager commandManager;
-	public ConversationManager conversationManager;
 	public BukkitScheduler scheduler;
 	
 	/**
@@ -89,7 +87,6 @@ public abstract class BasePlugin extends JavaPlugin {
 		this.pluginManager = this.server.getPluginManager();
 		this.permissionManager = new PermissionManager(this);
 		this.commandManager = new CommandManager(this);
-		this.conversationManager = new ConversationManager(this);
 		this.scheduler = this.server.getScheduler();
 		
 		if (createFolder && !this.baseDir.exists()){
@@ -97,8 +94,6 @@ public abstract class BasePlugin extends JavaPlugin {
 		}
 		
 		this.displayName = this.description.getName();
-		
-		this.pluginManager.registerEvents(this.conversationManager, this);
 	}
 	
 	/**
