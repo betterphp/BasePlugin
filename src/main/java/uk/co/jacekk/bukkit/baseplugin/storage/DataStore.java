@@ -33,7 +33,7 @@ public class DataStore {
 		this.data = new HashMap<String, String>();
 		this.caseSensitive = caseSensitive;
 		
-		if (this.storageFile.exists() == false){
+		if (!this.storageFile.exists()){
 			try{
 				this.storageFile.createNewFile();
 			}catch (Exception e){
@@ -58,7 +58,7 @@ public class DataStore {
 				key = (this.caseSensitive) ? info[0] : info[0].toLowerCase();
 				value = info[1];
 				
-				if (this.data.containsKey(key) == false){
+				if (!this.data.containsKey(key)){
 					this.data.put(key, value);
 				}
 			}
@@ -129,7 +129,7 @@ public class DataStore {
 			key = key.toLowerCase();
 		}
 		
-		if (this.data.containsKey(key) == false){
+		if (!this.data.containsKey(key)){
 			return "";
 		}
 		
@@ -166,7 +166,7 @@ public class DataStore {
 			key = key.toLowerCase();
 		}
 		
-		if (this.data.containsKey(key) == false){
+		if (!this.data.containsKey(key)){
 			this.data.put(key, value);
 		}
 	}

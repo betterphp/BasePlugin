@@ -17,7 +17,7 @@ public class ListUtils {
 	 * @param numbers	The list of numbers to sum.
 	 * @return			The sum of all the values in the list.
 	 */
-	public static long sumLongs(Collection<Long> numbers){
+	public static long sum(Collection<Long> numbers){
 		long sum = 0L;
 		
 		for (long value : numbers){
@@ -31,10 +31,10 @@ public class ListUtils {
 	 * @param numbers	The list of numbers to sum.
 	 * @return			The sum of all the values in the list.
 	 */
-	public static int sumIntegers(Collection<Integer> numbers){
-		int sum = 0;
+	public static double sum(Collection<Double> numbers){
+		double sum = 0;
 		
-		for (int value : numbers){
+		for (double value : numbers){
 			sum += value;
 		}
 		
@@ -48,7 +48,7 @@ public class ListUtils {
 	 * @return			The standard deviation.
 	 */
 	public static double stddev(Collection<Long> numbers){
-		double mean = (double) sumLongs(numbers) / (double) numbers.size();
+		double mean = (double) sum(numbers) / (double) numbers.size();
 		
 		double stdDevSum = 0D;
 		

@@ -25,10 +25,10 @@ public class BukkitDevUpdateChecker extends UpdateChecker {
 	 * Creates a new update checker for this plugin.
 	 * 
 	 * @param plugin	The plugin to check for updates for.
-	 * @param url		The URL of the BukkitDev files RSS feed.
+	 * @param url		The URL slug of the BukkitDev project page.
 	 */
-	public BukkitDevUpdateChecker(Plugin plugin, String url){
-		super(plugin, url);
+	public BukkitDevUpdateChecker(Plugin plugin, String slug){
+		super(plugin, "http://dev.bukkit.org/bukkit-plugins/" + slug + "/files.rss");
 	}
 	
 	/**

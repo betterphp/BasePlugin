@@ -124,7 +124,7 @@ public class ListStore {
 			entry = entry.toLowerCase();
 		}
 		
-		if (this.data.contains(entry) == false){
+		if (!this.data.contains(entry)){
 			this.data.add(entry);
 			
 			try{

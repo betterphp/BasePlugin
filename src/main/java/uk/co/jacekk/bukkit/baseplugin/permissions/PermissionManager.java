@@ -43,7 +43,7 @@ public class PermissionManager extends BaseObject<BasePlugin> {
 			}
 		}
 		
-		this.registerPermissions(perms.toArray(new PluginPermission[0]));
+		this.registerPermissions(perms.toArray(new PluginPermission[perms.size()]));
 	}
 	
 }
