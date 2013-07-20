@@ -21,7 +21,7 @@ public class PermissionManager extends BaseObject<BasePlugin> {
 	 */
 	public void registerPermissions(PluginPermission[] permissions){
 		for (PluginPermission permission : permissions){
-			plugin.pluginManager.addPermission(new Permission(permission.getNode(), permission.getDescription(), permission.getDefault()));
+			plugin.getServer().getPluginManager().addPermission(new Permission(permission.getNode(), permission.getDescription(), permission.getDefault()));
 		}
 	}
 	

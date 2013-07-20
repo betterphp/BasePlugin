@@ -27,7 +27,7 @@ public class CommandManager {
 		this.plugin = plugin;
 		
 		try{
-			this.commandMap = ReflectionUtils.getFieldValue(SimplePluginManager.class, "commandMap", CommandMap.class, plugin.pluginManager);
+			this.commandMap = ReflectionUtils.getFieldValue(SimplePluginManager.class, "commandMap", CommandMap.class, plugin.getServer().getPluginManager());
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -44,6 +44,7 @@ public class CommandManager {
 	 * @throws CommandRegistrationException if the registration fails
 	 */
 	public void registerCommandExecutor(BaseCommandExecutor<? extends BasePlugin> executor){
+		@SuppressWarnings("unchecked")
 		Class<BaseCommandExecutor<? extends BasePlugin>> cls = (Class<BaseCommandExecutor<? extends BasePlugin>>) executor.getClass();
 		
 		for (Method method : cls.getDeclaredMethods()){

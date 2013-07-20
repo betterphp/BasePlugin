@@ -106,7 +106,7 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 			String last = args[args.length - 1].toLowerCase();
 			
 			if (tab.equalsIgnoreCase("<online_player>")){
-				for (Player player : plugin.server.getOnlinePlayers()){
+				for (Player player : plugin.getServer().getOnlinePlayers()){
 			 		String playerName = player.getName();
 			 		String testName = playerName.toLowerCase();
 			 		
@@ -115,7 +115,7 @@ public class PluginCommand extends Command implements PluginIdentifiableCommand 
 			 		}
 				}
 			}else if (tab.equalsIgnoreCase("<player>")){
-				for (OfflinePlayer player : plugin.server.getOfflinePlayers()){
+				for (OfflinePlayer player : plugin.getServer().getOfflinePlayers()){
 			 		String playerName = player.getName();
 			 		String testName = playerName.toLowerCase();
 			 		

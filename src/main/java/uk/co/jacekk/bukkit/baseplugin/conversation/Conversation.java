@@ -112,7 +112,7 @@ public abstract class Conversation<T extends CommandSender> implements Listener 
 			throw new IllegalStateException("Start node not set");
 		}
 		
-		this.plugin.pluginManager.registerEvents(this, this.plugin);
+		this.plugin.getServer().getPluginManager().registerEvents(this, this.plugin);
 		
 		String prompt = this.nextNode.getPromptText();
 		
