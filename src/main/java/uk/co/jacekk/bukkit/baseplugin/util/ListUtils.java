@@ -14,53 +14,6 @@ public class ListUtils {
 	private static final Random rand = new Random();
 	
 	/**
-	 * @param numbers	The list of numbers to sum.
-	 * @return			The sum of all the values in the list.
-	 */
-	public static long sum(Collection<Long> numbers){
-		long sum = 0L;
-		
-		for (long value : numbers){
-			sum += value;
-		}
-		
-		return sum;
-	}
-	
-	/**
-	 * @param numbers	The list of numbers to sum.
-	 * @return			The sum of all the values in the list.
-	 */
-	public static double sum(Collection<Double> numbers){
-		double sum = 0;
-		
-		for (double value : numbers){
-			sum += value;
-		}
-		
-		return sum;
-	}
-	
-	/**
-	 * Calculates the standard deviation of the values in the list.
-	 * 
-	 * @param numbers	The numbers to use for the calculation.
-	 * @return			The standard deviation.
-	 */
-	public static double stddev(Collection<Long> numbers){
-		double mean = (double) sum(numbers) / (double) numbers.size();
-		
-		double stdDevSum = 0D;
-		
-		for (Long number : numbers){
-			double diff = number - mean;
-			stdDevSum += diff * diff;
-		}
-		
-		return Math.sqrt(stdDevSum / numbers.size());
-	}
-	
-	/**
 	 * Joins all of the elements in the list together with a separator string.
 	 * 
 	 * @param sep		The string to use as a separator.
