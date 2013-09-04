@@ -1,6 +1,5 @@
 package uk.co.jacekk.bukkit.baseplugin.util;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
