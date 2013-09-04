@@ -46,4 +46,68 @@ public class ListUtils {
 		return items.get(rand.nextInt(items.size()));
 	}
 	
+	/**
+	 * Sums all of the numbers in the list.
+	 * 
+	 * @param numbers The list
+	 * @return The sum.
+	 */
+	public static int sumInts(List<Integer> numbers){
+		int result = 0;
+		
+		for (Integer number : numbers){
+			result += number;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Sums all of the numbers in the list.
+	 * 
+	 * @param numbers The list
+	 * @return The sum.
+	 */
+	public static long sumLongs(List<Long> numbers){
+		long result = 0;
+		
+		for (Long number : numbers){
+			result += number;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Sums all of the numbers in the list.
+	 * 
+	 * @param numbers The list
+	 * @return The sum.
+	 */
+	public static double sumDoubles(List<Double> numbers){
+		double result = 0;
+		
+		for (Double number : numbers){
+			result += number;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Sums all of the numbers in the list.
+	 * 
+	 * @param numbers The list
+	 * @return The sum.
+	 */
+	public static float sumFloats(List<Float> numbers){
+		float result = 0;
+		
+		for (Float number : numbers){
+			result += number;
+		}
+		
+		return result;
+	}
+	
 }
