@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.baseplugin.util;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -52,7 +53,7 @@ public class ListUtils {
 	 * @param numbers The list
 	 * @return The sum.
 	 */
-	public static int sumInts(List<Integer> numbers){
+	public static int sumInts(Collection<Integer> numbers){
 		int result = 0;
 		
 		for (Integer number : numbers){
@@ -68,7 +69,7 @@ public class ListUtils {
 	 * @param numbers The list
 	 * @return The sum.
 	 */
-	public static long sumLongs(List<Long> numbers){
+	public static long sumLongs(Collection<Long> numbers){
 		long result = 0;
 		
 		for (Long number : numbers){
@@ -84,7 +85,7 @@ public class ListUtils {
 	 * @param numbers The list
 	 * @return The sum.
 	 */
-	public static double sumDoubles(List<Double> numbers){
+	public static double sumDoubles(Collection<Double> numbers){
 		double result = 0;
 		
 		for (Double number : numbers){
@@ -100,7 +101,7 @@ public class ListUtils {
 	 * @param numbers The list
 	 * @return The sum.
 	 */
-	public static float sumFloats(List<Float> numbers){
+	public static float sumFloats(Collection<Float> numbers){
 		float result = 0;
 		
 		for (Float number : numbers){
