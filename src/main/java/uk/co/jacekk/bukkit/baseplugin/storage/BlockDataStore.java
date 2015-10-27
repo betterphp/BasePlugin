@@ -31,7 +31,8 @@ public class BlockDataStore<T extends Serializable> extends BaseListener<BasePlu
 	private HashMap<ChunkLocation, HashMap<BlockLocation, T>> data;
 	
 	/**
-	 * @param folder The folder that the data will be stored in.
+	 * @param plugin	The plugin that this object belong to.
+	 * @param folder	The folder that the data will be stored in.
 	 */
 	public BlockDataStore(BasePlugin plugin, File folder){
 		super(plugin);

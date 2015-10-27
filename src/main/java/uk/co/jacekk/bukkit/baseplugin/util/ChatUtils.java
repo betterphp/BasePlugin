@@ -28,10 +28,10 @@ public class ChatUtils {
 	
 	/**
 	 * Gets the list of formatting codes and the values they represent.
-	 * 
-	 * <p>Colour codes are a the colours hex value prefixed with a &</u>
-	 * <p>Formatting codes are the name of the format prefixed with a #, e.g. the code for underlined is #u</p>
-	 * 
+	 * <p>
+	 * Colour codes are a the colours hex value prefixed with a '&'
+	 * Formatting codes are the name of the format prefixed with a #, e.g. the code for underlined is #u
+	 *
 	 * @return	The map.
 	 */
 	public static LinkedHashMap<String, ChatColor> getFormattingCodeMap(){

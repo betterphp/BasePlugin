@@ -24,7 +24,7 @@ public class KeyValueArgumentProcessor extends ArgumentProcessor {
 	
 	/**
 	 * @param args			The command arguments.
-	 * @param seperator		The string used to separate the keys and values.
+	 * @param separator		The string used to separate the keys and values.
 	 */
 	public KeyValueArgumentProcessor(String[] args, String separator){
 		this.args = args;

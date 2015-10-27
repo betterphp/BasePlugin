@@ -13,6 +13,7 @@ public class ReflectionUtils {
 	 * @param name	The name of the field.
 	 * @param type	The type of the field.
 	 * @param from	The object to get the field value from.
+	 * @param <T>		The object being conversed with
 	 * 
 	 * @return	The value of the field.
 	 * @throws NoSuchFieldException		If the field could not be found
@@ -74,7 +75,9 @@ public class ReflectionUtils {
 	 * @param in			The object to set the value in.
 	 * @param args			The argument types for the method.
 	 * @param params		The arguments to pass to the method.
-	 * @return				The value returned by the method or null.
+     * @param <T>		    The object being conversed with
+     *
+     * @return				The value returned by the method or null.
 	 * @throws NoSuchMethodException		If the method could not be found
 	 * @throws SecurityException 			If the method could not be made accessible
 	 */
