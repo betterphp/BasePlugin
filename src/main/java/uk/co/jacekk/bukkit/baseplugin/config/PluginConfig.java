@@ -43,7 +43,7 @@ public class PluginConfig {
 	 * Creates a new config object that can be used to fetch the value of a {@link PluginConfigKey}
 	 * 
 	 * @param configFile		The file to be used to store this configuration (usually config.yml).
-	 * @param configDefaults	The class holding the default configuration options to be used if an entry cannot be found.
+	 * @param configHolder		The class holding the default configuration options to be used if an entry cannot be found.
 	 * @param log				The {@link PluginLogger} to be used for any messages.
 	 */
 	public PluginConfig(File configFile, Class<?> configHolder, PluginLogger log){

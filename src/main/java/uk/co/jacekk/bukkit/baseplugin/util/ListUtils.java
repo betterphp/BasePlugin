@@ -36,11 +36,12 @@ public class ListUtils {
 		
 		return builder.toString();
 	}
-	
+
 	/**
 	 * Gets a random entry from the list.
-	 * 
+	 *
 	 * @param items		The list to use.
+	 * @param <T>		The object being conversed with
 	 * @return			A random entry from the list.
 	 */
 	public static <T> T getRandom(List<T> items){

@@ -29,7 +29,8 @@ public abstract class Conversation<T extends CommandSender> implements Listener 
 	private String abortMessage;
 	
 	/**
-	 * @param with The object being conversed with
+	 * @param plugin	The plugin that this object belong to.
+	 * @param with 		The object being conversed with
 	 */
 	public Conversation(BasePlugin plugin, T with){
 		this.plugin = plugin;

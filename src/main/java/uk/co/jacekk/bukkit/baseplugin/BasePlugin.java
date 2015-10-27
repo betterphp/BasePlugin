@@ -55,7 +55,6 @@ public abstract class BasePlugin extends JavaPlugin {
 	 * Sets up the default fields for the plugin.
 	 * 
 	 * @param createFolder	If this is true then the plugin's data folder will be created if it does not exist.
-	 * @param minVersion	The minimum version of the BasePlugin library that is required.
 	 */
 	public void onEnable(boolean createFolder){
 		// This prevents Maven Shade plugin from replacing the package name
